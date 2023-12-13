@@ -17,5 +17,13 @@ public class MyWorld extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1);
+        
+        // Create watering can
+        Wateringcan wateringCan = new Wateringcan();
+        addObject(wateringCan, 300, 200);
+    }
+    
+    public int testMethod() {
+        return 500;
     }
 }
