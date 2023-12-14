@@ -12,11 +12,16 @@ public class Plant extends Actor
     
     public boolean thirsty = false;
     
-    /**
+    // Location
+    public int x = 200;
+    public int y = 200;
+    
+    /*
      * Constructor
      */
     public Plant() {
         waterTimer.mark(); // starts waterTimer
+        setLocation(x, y);
     }
     
     public void act()

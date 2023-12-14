@@ -13,9 +13,10 @@ public class MyWorld extends World
     public Plant plant;
     public Seed seed;
     public Pot pot;
+    public WaterIcon waterDrop;
     
     // Create arrays
-    public Pot[] pots = new Pot[3];
+    //public Pot[] pots = new Pot[3];
     
     // This is the Singleton design pattern
     // https://gameprogrammingpatterns.com/singleton.html
@@ -46,16 +47,16 @@ public class MyWorld extends World
         
         // Create plant
         plant = new Plant();
-        addObject(plant, 300, 300);
+        addObject(plant, plant.x, plant.y);
+        
+        // Create water icon
+        waterDrop = new WaterIcon();
+        addObject(waterDrop, waterDrop.x, waterDrop.y);
         
         // Create pots
         pot = new Pot();
         addObject(pot, 400, 300);
         
-        for(int i = 0; i < pots.length; i++) {
-            Pot pt = new Pot();
-            addObject(pt, 100 + i*100, 200);
-        }
         
     }
     
