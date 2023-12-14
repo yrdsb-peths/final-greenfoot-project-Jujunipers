@@ -10,6 +10,8 @@ public class Plant extends Actor
 {
     SimpleTimer waterTimer = new SimpleTimer();
     
+    boolean thirsty = false;
+    
     /**
      * Constructor
      */
@@ -19,13 +21,15 @@ public class Plant extends Actor
     
     public void act()
     {
-        
-        if(waterTimer.millisElapsed() < 10000) {
-            return;
+        // Plant becomes thirsty again after every 10 000 milliseconds
+        if(!thirsty) {
+            if(waterTimer.millisElapsed() < 10000) {
+                return;
+            }
+            thirsty = true;
+            System.out.println("thirsty");
+            System.out.println("!");
         }
-        
-        System.out.println("thirsty");
-        System.out.println("!");
         waterTimer.mark(); // reset waterTimer
     }
 }
