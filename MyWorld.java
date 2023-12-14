@@ -11,6 +11,7 @@ public class MyWorld extends World
     // Create the variables here (so that they can be accessed from other classes)
     public Wateringcan wateringCan;
     public Plant plant;
+    public Seed seed;
     public Pot pot;
     
     // Create arrays
@@ -35,18 +36,25 @@ public class MyWorld extends World
         instance = this;
 
         
-        // Create watering can
+        // Create watering can, in menu
         wateringCan = new Wateringcan();
         addObject(wateringCan, wateringCan.ogX, wateringCan.ogY);
+        
+        // Create seedbag, in menu
+        seed = new Seed();
+        addObject(seed, seed.ogX, seed.ogY);
         
         // Create plant
         plant = new Plant();
         addObject(plant, 300, 300);
         
         // Create pots
+        pot = new Pot();
+        addObject(pot, 400, 300);
+        
         for(int i = 0; i < pots.length; i++) {
-            Pot pot = new Pot();
-            addObject(pot, 100 + i*100, 200);
+            Pot pt = new Pot();
+            addObject(pt, 100 + i*100, 200);
         }
         
     }

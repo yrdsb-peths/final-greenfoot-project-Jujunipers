@@ -8,6 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Pot extends Actor
 {
+    public boolean hasPlant = false;
+    
     public void act()
     {
         // Add your action code here.
