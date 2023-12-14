@@ -11,6 +11,10 @@ public class MyWorld extends World
     // Create the variables here (so that they can be accessed from other classes)
     public Wateringcan wateringCan;
     public Plant plant;
+    public Pot pot;
+    
+    // Create arrays
+    public Pot[] pots = new Pot[3];
     
     // This is the Singleton design pattern
     // https://gameprogrammingpatterns.com/singleton.html
@@ -38,9 +42,13 @@ public class MyWorld extends World
         // Create plant
         plant = new Plant();
         addObject(plant, 300, 300);
+        
+        // Create pots
+        for(int i = 0; i < pots.length; i++) {
+            Pot pot = new Pot();
+            addObject(pot, 100 + i*100, 200);
+        }
+        
     }
     
-    public int testMethod() {
-        return 500;
-    }
 }

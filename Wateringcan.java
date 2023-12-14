@@ -10,8 +10,8 @@ public class Wateringcan extends Actor
 {
     boolean dragging = false;
     // Original location of watering can
-    public int ogX = 300;
-    public int ogY = 200;
+    public int ogX = 25;
+    public int ogY = 25;
     
     public void act()
     {
