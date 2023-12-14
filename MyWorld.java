@@ -8,7 +8,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MyWorld extends World
 {
-
+    // Create the variables here (so that they can be accessed from other classes)
+    public Wateringcan wateringCan;
+    public Plant plant;
+    
+    // This is the Singleton design pattern
+    // https://gameprogrammingpatterns.com/singleton.html
+    // Store instance of MyWorld in the variable, instance
+    public static MyWorld instance;
+    
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -18,9 +26,18 @@ public class MyWorld extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1);
         
+        // Set variable instance to the current instance of MyWorld
+        // To call variables in MyWorld from other classes: MyWorld.instance.variable
+        instance = this;
+
+        
         // Create watering can
-        Wateringcan wateringCan = new Wateringcan();
-        addObject(wateringCan, 300, 200);
+        wateringCan = new Wateringcan();
+        addObject(wateringCan, wateringCan.ogX, wateringCan.ogY);
+        
+        // Create plant
+        plant = new Plant();
+        addObject(plant, 300, 300);
     }
     
     public int testMethod() {

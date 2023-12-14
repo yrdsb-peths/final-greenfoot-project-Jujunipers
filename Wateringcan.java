@@ -8,31 +8,38 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Wateringcan extends Actor
 {
+    boolean dragging = false;
+    // Original location of watering can
+    public int ogX = 300;
+    public int ogY = 200;
+    
     public void act()
     {
-        MyWorld world = (MyWorld) getWorld();
-        
-        // Watering can location follows mouse
         MouseInfo mouseInfo = Greenfoot.getMouseInfo();
         
+        // Allow mouse to click and drag wateringCan around
         if(mouseInfo != null) {
-            if(mouseInfo.getButton() == 1 && mouseInfo.getX() > this.getX() - 50 && mouseInfo.getX() < this.getX() + 50 && mouseInfo.getY() > this.getY() - 50 && mouseInfo.getY() < this.getY() + 50) {
+            if(!dragging && Greenfoot.mouseDragged(this)) {
+                dragging = true;
+            }
+            if(dragging && Greenfoot.mouseDragEnded(this)) {
+                dragging = false;
+                setLocation(ogX, ogY); // return wateringCan to og location when drag is released
+            }
+            // Make wateringCan follow mouse if dragging is true
+            if(dragging) {
                 setLocation(mouseInfo.getX(), mouseInfo.getY());
-                
             }
         }
         
-        
-        /*
-        if(mouseInfo != null) {
-            boolean mouseOnWateringCan = mouseInfo.getX() == this.getX() && mouseInfo.getY() == this.getY();
-            if(mouseOnWateringCan) {
-                int x = mouseInfo.getX();
-                int y = mouseInfo.getY();
-                setLocation(x, y);
-            }
+        // Water plant
+        if(dragging && isTouching(Plant.class)) {
+            dragging = false;
+            //setLocation(100, 100);
             
         }
-        */
+        
+
+        
     }
 }
