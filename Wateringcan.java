@@ -35,7 +35,9 @@ public class Wateringcan extends Actor
         // Water plant
         if(dragging && isTouching(Plant.class)) {
             dragging = false;
-            //setLocation(100, 100);
+            MyWorld.instance.plant.thirsty = false;
+            System.out.println(MyWorld.instance.plant.thirsty);
+            setLocation(100, 100);
             
         }
         

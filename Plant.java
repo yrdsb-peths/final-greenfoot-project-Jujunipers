@@ -10,7 +10,7 @@ public class Plant extends Actor
 {
     SimpleTimer waterTimer = new SimpleTimer();
     
-    boolean thirsty = false;
+    public boolean thirsty = false;
     
     /**
      * Constructor
