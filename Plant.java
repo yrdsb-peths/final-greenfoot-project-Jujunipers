@@ -8,12 +8,24 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Plant extends Actor
 {
+    SimpleTimer waterTimer = new SimpleTimer();
+    
     /**
-     * Act - do whatever the Plant wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Constructor
      */
+    public Plant() {
+        waterTimer.mark(); // starts waterTimer
+    }
+    
     public void act()
     {
-        // Add your action code here.
+        
+        if(waterTimer.millisElapsed() < 10000) {
+            return;
+        }
+        
+        System.out.println("thirsty");
+        System.out.println("!");
+        waterTimer.mark(); // reset waterTimer
     }
 }
