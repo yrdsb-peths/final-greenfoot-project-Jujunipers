@@ -26,13 +26,6 @@ public class WaterIcon extends Actor
     
     public void act()
     {
-        // If thirsty, make water icon appear. Otherwise, water icon is transparent
-        if(MyWorld.instance.plant.thirsty) {
-            transparency = 255;
-        } else {
-            transparency = 0;
-        }
-        
         waterDrop.setTransparency(transparency);
     }
 }

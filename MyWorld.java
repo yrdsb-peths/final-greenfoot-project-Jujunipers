@@ -13,7 +13,7 @@ public class MyWorld extends World
     public Plant plant;
     public Seed seed;
     public Pot pot;
-    public WaterIcon waterDrop;
+    public WaterIcon waterIcon;
     
     // Create arrays
     //public Pot[] pots = new Pot[3];
@@ -50,8 +50,8 @@ public class MyWorld extends World
         addObject(plant, plant.x, plant.y);
         
         // Create water icon
-        waterDrop = new WaterIcon();
-        addObject(waterDrop, waterDrop.x, waterDrop.y);
+        waterIcon = new WaterIcon();
+        addObject(waterIcon, waterIcon.x, waterIcon.y);
         
         // Create pots
         pot = new Pot();

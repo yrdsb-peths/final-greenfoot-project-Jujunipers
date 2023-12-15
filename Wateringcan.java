@@ -29,7 +29,9 @@ public class Wateringcan extends Actor
                 dragging = false;
                 // If wateringCan is over plant by end of drag, water plant, but only if thirsty. If not thirsty, return wateringCan
                 if(isTouching(Plant.class) && MyWorld.instance.plant.thirsty) {
-                    setLocation(100, 100);
+                    setLocation(100, 100); // temporary, replace with watering animation
+                    MyWorld.instance.plant.thirsty = false;
+                    MyWorld.instance.plant.waterTimer.mark(); // restart the thirst count
                 } else {
                     setLocation(ogX, ogY); // return wateringCan to og location when drag is released
                 }

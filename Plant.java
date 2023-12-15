@@ -28,6 +28,8 @@ public class Plant extends Actor
     {
         // Plant becomes thirsty again after every 10 000 milliseconds
         if(!thirsty) {
+            // Since not thirsty, set water icon to be transparent
+            MyWorld.instance.waterIcon.transparency = 0;
             if(waterTimer.millisElapsed() < 10000) {
                 return;
             }
@@ -36,5 +38,10 @@ public class Plant extends Actor
             System.out.println("!");
         }
         waterTimer.mark(); // reset waterTimer
+        
+        // If thirsty, make water icon appear
+        if(thirsty) {
+            MyWorld.instance.waterIcon.transparency = 255;
+        }
     }
 }
