@@ -24,27 +24,18 @@ public class Seed extends Actor
             }
             if(dragging && Greenfoot.mouseDragEnded(this)) {
                 dragging = false;
-                setLocation(ogX, ogY); // return seedbag to og location when drag is released
+                // Plant seed in pot, but only if it doesn't already have a plant
+                if(isTouching(Pot.class) && !MyWorld.instance.pot.hasPlant) {
+                    setLocation(500, 100); // temporary, replace with planting animation
+                    MyWorld.instance.pot.hasPlant = true;
+                } else {
+                    setLocation(ogX, ogY); // return seedbag to og location when drag is released
+                }
             }
             // Make seedbag follow mouse if dragging is true
             if(dragging) {
                 setLocation(mouseInfo.getX(), mouseInfo.getY());
             }
-        }
-        
-        // Plant seed in pot, but only if it doesn't already have a plant
-        if(dragging && isTouching(Pot.class)) {
-            dragging = false;
-            if(MyWorld.instance.pot.hasPlant) {
-                System.out.println("Pot already full");
-            } else {
-                MyWorld.instance.pot.hasPlant = true;
-            
-                setLocation(500, 100);
-            }
-            
-            //setLocation(MyWorld.instance.pot.getX(), MyWorld.instance.pot.getY());
-            
         }
     }
 }
