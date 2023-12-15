@@ -10,10 +10,8 @@ public class MyWorld extends World
 {
     // Create the variables here (so that they can be accessed from other classes)
     public Wateringcan wateringCan;
-    public Plant plant;
     public Seed seed;
     public Pot pot;
-    public WaterIcon waterIcon;
     
     // Create arrays
     //public Pot[] pots = new Pot[3];
@@ -45,17 +43,12 @@ public class MyWorld extends World
         seed = new Seed();
         addObject(seed, seed.ogX, seed.ogY);
         
-        // Create plant
-        plant = new Plant();
-        addObject(plant, plant.x, plant.y);
         
-        // Create water icon
-        waterIcon = new WaterIcon();
-        addObject(waterIcon, waterIcon.x, waterIcon.y);
+        
         
         // Create pots
         pot = new Pot();
-        addObject(pot, 400, 300);
+        addObject(pot, pot.x, pot.y);
         
         
     }

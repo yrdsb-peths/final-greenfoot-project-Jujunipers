@@ -9,23 +9,23 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class WaterIcon extends Actor
 {
     // Location
-    public int x = MyWorld.instance.plant.x + 30;
-    public int y = MyWorld.instance.plant.y - 20;
+    public int x = MyWorld.instance.pot.plant.x + 30;
+    public int y = MyWorld.instance.pot.plant.y - 20;
     
     // Transparency
     public int transparency = 0;
     
-    GreenfootImage waterDrop;
+    GreenfootImage waterIcon;
     
     public WaterIcon() {
-        waterDrop = new GreenfootImage("images/water-droplet.png");
-        waterDrop.scale(12, 16);
-        waterDrop.setTransparency(0); // Set it to be invisible at first
-        setImage(waterDrop);
+        waterIcon = new GreenfootImage("images/water-droplet.png");
+        waterIcon.scale(12, 16);
+        waterIcon.setTransparency(0); // Set it to be invisible at first
+        setImage(waterIcon);
     }
     
     public void act()
     {
-        waterDrop.setTransparency(transparency);
+        waterIcon.setTransparency(transparency);
     }
 }

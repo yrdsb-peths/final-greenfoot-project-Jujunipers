@@ -28,6 +28,7 @@ public class Seed extends Actor
                 if(isTouching(Pot.class) && !MyWorld.instance.pot.hasPlant) {
                     setLocation(500, 100); // temporary, replace with planting animation
                     MyWorld.instance.pot.hasPlant = true;
+                    MyWorld.instance.pot.createPlant();
                 } else {
                     setLocation(ogX, ogY); // return seedbag to og location when drag is released
                 }
