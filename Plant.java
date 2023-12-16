@@ -12,16 +12,16 @@ public class Plant extends Actor
     
     public boolean thirsty = false;
     
-    // Location
-    public int x = 200;
-    public int y = 200;
+    // Pot instance
+    public Pot potInstance;
     
     /*
      * Constructor
      */
-    public Plant() {
+    public Plant(Pot potInstance) {
         waterTimer.mark(); // starts waterTimer
-        setLocation(x, y);
+        
+        this.potInstance = potInstance;
     }
     
     public void act()
@@ -29,7 +29,7 @@ public class Plant extends Actor
         // Plant becomes thirsty again after every 10 000 milliseconds
         if(!thirsty) {
             // Since not thirsty, set water icon to be transparent
-            MyWorld.instance.pot.waterIcon.transparency = 0;
+            potInstance.waterIcon.transparency = 0;
             if(waterTimer.millisElapsed() < 10000) {
                 return;
             }
@@ -41,7 +41,14 @@ public class Plant extends Actor
         
         // If thirsty, make water icon appear
         if(thirsty) {
-            MyWorld.instance.pot.waterIcon.transparency = 255;
+            potInstance.waterIcon.transparency = 255;
         }
+    }
+    
+    public void waterPlant() {
+        Pot potInstance = (Pot) getOneIntersectingObject(Pot.class); // gets the specific pot instance that the mouse is touching
+        setLocation(100, 100); // temporary, replace with watering animation
+        potInstance.plant.thirsty = false;
+        potInstance.plant.waterTimer.mark(); // restart the thirst count
     }
 }

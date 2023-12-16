@@ -13,9 +13,6 @@ public class Wateringcan extends Actor
     public int ogX = 25;
     public int ogY = 25;
     
-    // Load water icon image
-    //GreenfootImage waterDrop = new GreenfootImage("images/waterdrop.webp");
-    
     public void act()
     {
         MouseInfo mouseInfo = Greenfoot.getMouseInfo();
@@ -27,11 +24,11 @@ public class Wateringcan extends Actor
             }
             if(dragging && Greenfoot.mouseDragEnded(this)) {
                 dragging = false;
+                
+                Pot potInstance = (Pot) getOneIntersectingObject(Pot.class); // gets the specific pot instance that the mouse is touching
                 // If wateringCan is over plant by end of drag, water plant, but only if thirsty. If not thirsty, return wateringCan
-                if(isTouching(Plant.class) && MyWorld.instance.pot.plant.thirsty) {
-                    setLocation(100, 100); // temporary, replace with watering animation
-                    MyWorld.instance.pot.plant.thirsty = false;
-                    MyWorld.instance.pot.plant.waterTimer.mark(); // restart the thirst count
+                if(isTouching(Plant.class) && potInstance.plant.thirsty) {
+                    potInstance.plant.waterPlant();
                 } else {
                     setLocation(ogX, ogY); // return wateringCan to og location when drag is released
                 }

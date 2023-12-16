@@ -10,13 +10,13 @@ public class Pot extends Actor
 {
     public boolean hasPlant = false;
     
-    // Location
-    public int x = 400;
-    public int y = 300;
-    
     // Create plant and waterIcon variables. plants and waterIcons now belong to each pot instance
     public Plant plant;
     public WaterIcon waterIcon;
+    
+    public Pot() {
+        
+    }
     
     public void act()
     {
@@ -24,10 +24,12 @@ public class Pot extends Actor
     }
     
     public void createPlant() {
+        hasPlant = true;
+        
         // Create plant
-        plant = new Plant();
-        int plantX = this.x;
-        int plantY = this.y - 20;
+        plant = new Plant(this);
+        int plantX = this.getX();
+        int plantY = this.getY() - 20;
         MyWorld.instance.addObject(plant, plantX, plantY);
         
         // Create plant's waterIcon

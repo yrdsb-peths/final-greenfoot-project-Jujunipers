@@ -8,10 +8,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class WaterIcon extends Actor
 {
-    // Location
-    public int x = MyWorld.instance.pot.plant.x + 30;
-    public int y = MyWorld.instance.pot.plant.y - 20;
-    
     // Transparency
     public int transparency = 0;
     

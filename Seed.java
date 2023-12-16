@@ -24,11 +24,12 @@ public class Seed extends Actor
             }
             if(dragging && Greenfoot.mouseDragEnded(this)) {
                 dragging = false;
+                
+                Pot potInstance = (Pot) getOneIntersectingObject(Pot.class); // gets the specific pot instance that the mouse is touching
                 // Plant seed in pot, but only if it doesn't already have a plant
-                if(isTouching(Pot.class) && !MyWorld.instance.pot.hasPlant) {
+                if(isTouching(Pot.class) && !potInstance.hasPlant) {
                     setLocation(500, 100); // temporary, replace with planting animation
-                    MyWorld.instance.pot.hasPlant = true;
-                    MyWorld.instance.pot.createPlant();
+                    potInstance.createPlant();
                 } else {
                     setLocation(ogX, ogY); // return seedbag to og location when drag is released
                 }
