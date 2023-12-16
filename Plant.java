@@ -13,7 +13,7 @@ public class Plant extends Actor
     public boolean thirsty = false;
     
     // Pot instance
-    public Pot potInstance;
+    Pot potInstance;
     
     /*
      * Constructor
@@ -46,8 +46,6 @@ public class Plant extends Actor
     }
     
     public void waterPlant() {
-        Pot potInstance = (Pot) getOneIntersectingObject(Pot.class); // gets the specific pot instance that the mouse is touching
-        setLocation(100, 100); // temporary, replace with watering animation
         potInstance.plant.thirsty = false;
         potInstance.plant.waterTimer.mark(); // restart the thirst count
     }

@@ -26,9 +26,12 @@ public class Wateringcan extends Actor
                 dragging = false;
                 
                 Pot potInstance = (Pot) getOneIntersectingObject(Pot.class); // gets the specific pot instance that the mouse is touching
-                // If wateringCan is over plant by end of drag, water plant, but only if thirsty. If not thirsty, return wateringCan
-                if(isTouching(Plant.class) && potInstance.plant.thirsty) {
-                    potInstance.plant.waterPlant();
+                // If wateringCan is over plant by end of drag, water plant, but only if thirsty. If not thirsty, return wateringCan to og location
+                if(isTouching(Pot.class)) {
+                    if(potInstance.plant.thirsty) {
+                        potInstance.plant.waterPlant();
+                        setLocation(100, 100); // temporary, replace with watering animation
+                    }
                 } else {
                     setLocation(ogX, ogY); // return wateringCan to og location when drag is released
                 }
