@@ -13,7 +13,7 @@ public class MyWorld extends World
     public Seed seed;
     
     // Create arrays
-    public Pot[] pots = new Pot[2];
+    public Pot[] pots = new Pot[5];
     public Pot currentPotInstance;
     
     // This is the Singleton design pattern
