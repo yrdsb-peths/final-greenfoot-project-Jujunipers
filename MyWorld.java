@@ -16,6 +16,9 @@ public class MyWorld extends World
     public Pot[] pots = new Pot[5];
     public Pot currentPotInstance;
     
+    // Create playerData instance
+    public PlayerData playerData;
+    
     // This is the Singleton design pattern
     // https://gameprogrammingpatterns.com/singleton.html
     // Store instance of MyWorld in the variable, instance
@@ -43,14 +46,14 @@ public class MyWorld extends World
         seed = new Seed();
         addObject(seed, seed.ogX, seed.ogY);
         
+        // Create playerData instance
+        playerData = new PlayerData();
         
         // Create pots in pot array
         for(int i = 0; i < pots.length; i++) {
             pots[i] = new Pot();
             addObject(pots[i], 100*(i+1), 200);
         }
-        
-        
     }
     
 }

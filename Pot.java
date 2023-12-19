@@ -30,7 +30,6 @@ public class Pot extends Actor
         plant = new Plant(this, "test");
         int plantX = this.getX();
         int plantY = this.getY() + plant.yAdjust[plant.growthStage];
-        System.out.println(plant.yAdjust[plant.growthStage]);
         MyWorld.instance.addObject(plant, plantX, plantY);
         
         // Create plant's waterIcon

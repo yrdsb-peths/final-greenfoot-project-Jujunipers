@@ -26,10 +26,12 @@ public class Seed extends Actor
                 dragging = false;
                 
                 Pot potInstance = (Pot) getOneIntersectingObject(Pot.class); // gets the specific pot instance that the mouse is touching
-                // Plant seed in pot, but only if it doesn't already have a plant
-                if(isTouching(Pot.class) && !potInstance.hasPlant) {
+                // Plant seed in pot, but only if it doesn't already have a plant and player still has seeds left
+                if(isTouching(Pot.class) && !potInstance.hasPlant && MyWorld.instance.playerData.numSeeds > 0) {
                     setLocation(ogX, ogY); // temporary, replace with planting animation
                     potInstance.createPlant();
+                    MyWorld.instance.playerData.numSeeds--;
+                    System.out.println(MyWorld.instance.playerData.numSeeds);
                 } else {
                     setLocation(ogX, ogY); // return seedbag to og location when drag is released
                 }
