@@ -11,15 +11,13 @@ public class PlayerData
     // Store instance of MyWorld in the variable, instance
     public static PlayerData instance;
     
-    public static int numSeeds;
+    public static int numSeeds = 3;
 
     public PlayerData()
     {
         // Set variable instance to the current instance of MyWorld
         // To call variables in MyWorld from other classes: MyWorld.instance.variable
         instance = this;
-        
-        numSeeds = 3;
     }
 
     /**

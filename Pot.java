@@ -14,8 +14,14 @@ public class Pot extends Actor
     public Plant plant;
     public WaterIcon waterIcon;
     
+    
+    private GreenfootImage potImage;
+    
     public Pot() {
-        
+        // Set pot image
+        potImage = new GreenfootImage("images/pot.jpg");
+        potImage.scale(66, 62);
+        setImage(potImage);
     }
     
     public void act()

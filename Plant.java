@@ -42,7 +42,7 @@ public class Plant extends Actor
             for(int i = 0; i < 3; i++) {
                 plantImages[i] = new GreenfootImage("images/plant" + i + ".png");
             }
-            yAdjust = new int[]{-12, -22, -49};
+            yAdjust = new int[]{-32, -42, -69};
         }
     }
     
