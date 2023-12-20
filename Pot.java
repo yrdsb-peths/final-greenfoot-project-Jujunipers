@@ -14,8 +14,14 @@ public class Pot extends Actor
     public Plant plant;
     public WaterIcon waterIcon;
     
+    
+    private GreenfootImage potImage;
+    
     public Pot() {
-        
+        // Set pot image
+        potImage = new GreenfootImage("images/pot.jpg");
+        potImage.scale(66, 62);
+        setImage(potImage);
     }
     
     public void act()
@@ -27,9 +33,9 @@ public class Pot extends Actor
         hasPlant = true;
         
         // Create plant
-        plant = new Plant(this);
+        plant = new Plant(this, "test");
         int plantX = this.getX();
-        int plantY = this.getY() - 20;
+        int plantY = this.getY() + plant.yAdjust[plant.growthStage];
         MyWorld.instance.addObject(plant, plantX, plantY);
         
         // Create plant's waterIcon
