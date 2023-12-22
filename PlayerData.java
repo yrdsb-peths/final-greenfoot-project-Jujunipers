@@ -11,7 +11,8 @@ public class PlayerData
     // Store instance of MyWorld in the variable, instance
     public static PlayerData instance;
     
-    public static int numSeeds = 3;
+    public int numSeeds = 3;
+    public int currency = 0;
 
     public PlayerData()
     {

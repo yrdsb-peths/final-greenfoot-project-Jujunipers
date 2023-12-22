@@ -17,7 +17,10 @@ public class MyWorld extends World
     public Pot currentPotInstance;
     
     // Create playerData instance
-    public PlayerData playerData;
+    public PlayerData playerData = new PlayerData();
+    
+    // Create currency Label
+    public Label currencyLabel;
     
     // This is the Singleton design pattern
     // https://gameprogrammingpatterns.com/singleton.html
@@ -43,11 +46,14 @@ public class MyWorld extends World
         addObject(wateringCan, wateringCan.ogX, wateringCan.ogY);
         
         // Create seedbag, in menu
-        seed = new Seed();
+        seed = new Seed(true); // isOgicon = true, icon cannot be dragged, counts numSeeds
+        addObject(seed, seed.ogX, seed.ogY);
+        seed = new Seed(false); // isOgIcon = false, draggable icon, doesn't count numSeeds
         addObject(seed, seed.ogX, seed.ogY);
         
-        // Create playerData instance
-        playerData = new PlayerData();
+        // Create currency Label
+        currencyLabel = new Label(this.playerData.currency, 100);
+        addObject(currencyLabel, 300, 50);
         
         // Create pots in pot array
         for(int i = 0; i < pots.length; i++) {
