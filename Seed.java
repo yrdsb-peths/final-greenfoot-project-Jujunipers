@@ -11,20 +11,27 @@ public class Seed extends Actor
     boolean dragging = false;
     boolean isOgIcon;
     // Original location of seedbag
-    public int ogX = 100;
-    public int ogY = 25;
+    public int ogX;
+    public int ogY;
     
     // Create seedCounter variable (amount of seeds that player owns). seedCounter belongs to the seed instance
     public Label seedCounter;
     
+    public String species;
+    
     GreenfootImage seed;
     
-    public Seed(boolean isOgIcon) {
+    public Seed(boolean isOgIcon, String species) {
         this.isOgIcon = isOgIcon;
+        this.species = species;
         
         // Create seed image
-        seed = new GreenfootImage("images/seeds.jpg");
-        seed.scale(36, 38);
+        if(species.equals("test")) {
+            seed = new GreenfootImage("images/seeds.jpg");
+            seed.scale(36, 38);
+            ogX = 100;
+            ogY = 25;
+        }
         setImage(seed);
         
         // Create seedCounter number, but only addObject if seed instance is the original icon
@@ -56,7 +63,7 @@ public class Seed extends Actor
                         setLocation(ogX, ogY); // temporary, replace with planting animation
                         
                         // Create plant
-                        potInstance.createPlant();
+                        potInstance.createPlant(species);
                         
                         // Change numSeeds value in PlayerData and label image
                         MyWorld.instance.playerData.numSeeds--;

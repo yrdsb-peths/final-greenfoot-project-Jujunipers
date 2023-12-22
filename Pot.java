@@ -29,11 +29,11 @@ public class Pot extends Actor
         
     }
     
-    public void createPlant() {
+    public void createPlant(String species) {
         hasPlant = true;
         
         // Create plant
-        plant = new Plant(this, "test");
+        plant = new Plant(this, species);
         int plantX = this.getX();
         int plantY = this.getY() + plant.yAdjust[plant.growthStage];
         MyWorld.instance.addObject(plant, plantX, plantY);

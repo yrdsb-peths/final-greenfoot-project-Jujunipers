@@ -46,9 +46,9 @@ public class MyWorld extends World
         addObject(wateringCan, wateringCan.ogX, wateringCan.ogY);
         
         // Create seedbag, in menu
-        seed = new Seed(true); // isOgicon = true, icon cannot be dragged, counts numSeeds
+        seed = new Seed(true, "test"); // isOgicon = true, icon cannot be dragged, counts numSeeds
         addObject(seed, seed.ogX, seed.ogY);
-        seed = new Seed(false); // isOgIcon = false, draggable icon, doesn't count numSeeds
+        seed = new Seed(false, "test"); // isOgIcon = false, draggable icon, doesn't count numSeeds
         addObject(seed, seed.ogX, seed.ogY);
         
         // Create currency Label
