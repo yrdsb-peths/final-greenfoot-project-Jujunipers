@@ -19,7 +19,7 @@ public class Seed extends Actor
     
     public String species;
     
-    GreenfootImage seed;
+    GreenfootImage seedImage;
     
     public Seed(boolean isOgIcon, String species) {
         this.isOgIcon = isOgIcon;
@@ -27,17 +27,18 @@ public class Seed extends Actor
         
         // Create seed image
         if(species.equals("test")) {
-            seed = new GreenfootImage("images/seeds.jpg");
-            seed.scale(36, 38);
-            ogX = 100;
-            ogY = 25;
+            seedImage = new GreenfootImage("images/seeds.png");
+            seedImage.scale((int) (MyWorld.instance.scale * (double) seedImage.getWidth()), (int) ((double) MyWorld.instance.scale * seedImage.getHeight()));
+            // original menu location for icon
+            ogX = 90;
+            ogY = 210;
         }
-        setImage(seed);
+        setImage(seedImage);
         
         // Create seedCounter number, but only addObject if seed instance is the original icon
-        seedCounter = new Label(MyWorld.instance.playerData.numSeeds, 25);
+        seedCounter = new Label(MyWorld.instance.playerData.numSeeds, 35);
         if(isOgIcon) {
-            MyWorld.instance.addObject(seedCounter, ogX + 25, ogY + 20);
+            MyWorld.instance.addObject(seedCounter, ogX + 30, ogY + 30);
         }
     }
     

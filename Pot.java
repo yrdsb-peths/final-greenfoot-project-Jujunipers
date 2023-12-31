@@ -19,8 +19,8 @@ public class Pot extends Actor
     
     public Pot() {
         // Set pot image
-        potImage = new GreenfootImage("images/pot.jpg");
-        potImage.scale(66, 62);
+        potImage = new GreenfootImage("images/pot.png");
+        potImage.scale((int) (MyWorld.instance.scale * (double) potImage.getWidth()), (int) ((double) MyWorld.instance.scale * potImage.getHeight()));
         setImage(potImage);
     }
     
@@ -34,14 +34,15 @@ public class Pot extends Actor
         
         // Create plant
         plant = new Plant(this, species);
-        int plantX = this.getX();
-        int plantY = this.getY() + plant.yAdjust[plant.growthStage];
+        int plantX = this.getX() + 5;
+        int plantY = this.getY() - 30;
+        //int plantY = this.getY() + plant.yAdjust[plant.growthStage];
         MyWorld.instance.addObject(plant, plantX, plantY);
         
         // Create plant's waterIcon
         waterIcon = new WaterIcon();
         int waterIconX = plantX + 30;
-        int waterIconY = plantY - 20;
+        int waterIconY = plantY + 20;
         MyWorld.instance.addObject(waterIcon, waterIconX, waterIconY);
     }
 }
