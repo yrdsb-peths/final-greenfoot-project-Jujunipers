@@ -33,17 +33,12 @@ public class WateringCan extends Actor
             }
             if(dragging && Greenfoot.mouseDragEnded(this)) {
                 dragging = false;
-                
-                Pot potInstance = (Pot) getOneIntersectingObject(Pot.class); // gets the specific pot instance that the mouse is touching
-                // If wateringCan is over plant by end of drag, water plant, but only if thirsty. If not thirsty, return wateringCan to og location
-                if(potInstance == null) { // potInstance is null
-                    setLocation(ogX, ogY); // return wateringCan to og location, meaning pot isn't touching it
-                } else if(isTouching(Pot.class) && isTouching(Plant.class) && potInstance.plant.thirsty) {
-                    potInstance.plant.waterPlant();
-                    setLocation(ogX, ogY); // temporary, replace with watering animation
+                if(tryToWaterSucceeds()) {
+                    setLocation(ogX, ogY); // return wateringCan to og location when drag is released
                 } else {
                     setLocation(ogX, ogY); // return wateringCan to og location when drag is released
                 }
+                
             }
             // Make wateringCan follow mouse if dragging is true
             if(dragging) {
@@ -51,8 +46,27 @@ public class WateringCan extends Actor
             }
         }
         
-        
-        
-        
+    }
+    
+    public boolean tryToWaterSucceeds() {
+        if(isTouching(Pot.class)) {
+            Pot potInstance = (Pot) getOneIntersectingObject(Pot.class); // gets the specific pot instance that the mouse is touching
+            if(PlayerDataManager.getPlayerData().plantData != null) { // if the plant in that pot exists, try to water it
+                if(PlayerDataManager.getPlayerData().plantData[potInstance.index].thirsty) { // if the plant is thirsty, water it and return true for success in watering plant
+                    potInstance.plant.waterPlant();
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        } else if(isTouching(Plant.class)) {
+            Plant plantInstance = (Plant) getOneIntersectingObject(Plant.class);
+            if(PlayerDataManager.getPlayerData().plantData[plantInstance.potInstance.index].thirsty) { // if plant is thirsty, try to water it
+                plantInstance.waterPlant();
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 }

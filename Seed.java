@@ -64,7 +64,7 @@ public class Seed extends Actor
                         setLocation(ogX, ogY); // temporary, replace with planting animation
                         
                         // Create plant
-                        potInstance.createPlant(species);
+                        potInstance.plantSeed(species);
                         
                         // Change numSeeds value in PlayerData and label image
                         MyWorld.instance.playerData.numSeeds--;

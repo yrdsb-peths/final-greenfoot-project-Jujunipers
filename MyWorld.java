@@ -65,13 +65,14 @@ public class MyWorld extends World
         addObject(seed, seed.ogX, seed.ogY);
         
         // Create currency Label
-        currencyLabel = new Label(this.playerData.currency, 40);
+        currencyLabel = new Label(PlayerDataManager.getPlayerData().currency, 40);
         addObject(currencyLabel, 140, 610);
         
         // Create pots in pot array
         for(int i = 0; i < pots.length; i++) {
-            pots[i] = new Pot();
+            pots[i] = new Pot(i);
             addObject(pots[i], 420+(i%5 *95), 120+(i/5 * 180));
+            pots[i].tryLoadPlant();
         }
         
         // Create shopIcon
@@ -79,7 +80,10 @@ public class MyWorld extends World
         addObject(shopIcon, 1097, 588);
         
         // Set order of object images
-        setPaintOrder(Label.class, Seed.class, WateringCan.class, WaterIcon.class, Pot.class, Plant.class);
+        setPaintOrder(Label.class, ShopButton.class, ShopMenu.class, Shop.class, Seed.class, WateringCan.class, WaterIcon.class, Pot.class, Plant.class);
     }
     
+    public void stopped() {
+        PlayerDataManager.saveData();
+    }
 }

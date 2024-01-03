@@ -1,34 +1,23 @@
+import java.io.Serializable;
+
 /**
  * Write a description of class PlayerData here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class PlayerData  
+public class PlayerData implements Serializable
 {
-    // This is the Singleton design pattern
-    // https://gameprogrammingpatterns.com/singleton.html
-    // Store instance of MyWorld in the variable, instance
-    public static PlayerData instance;
+    
+    
+    private static final long serialVersionUID = 1L;
     
     public int numSeeds = 3;
-    public int currency = 0;
+    public int currency = 500;
+    public PlantData[] plantData = new PlantData[15];
 
     public PlayerData()
     {
-        // Set variable instance to the current instance of MyWorld
-        // To call variables in MyWorld from other classes: MyWorld.instance.variable
-        instance = this;
-    }
-
-    /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
-     */
-    public int sampleMethod(int y)
-    {
-        return 5;
+        
     }
 }

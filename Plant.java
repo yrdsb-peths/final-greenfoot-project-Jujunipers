@@ -8,15 +8,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Plant extends Actor
 {
+    // p variable accesses the object at the index of the plantData[] array in PlayerData that this plant's variables are saved into
+    PlantData p;
+        
+    
     SimpleTimer waterTimer = new SimpleTimer();
-    
-    public boolean thirsty = false;
-    
-    private int age = 0;
-    public int growthStage = 0; // growthStage determines image to use for plant, as well as amount of y to adjust from pot
-    
-    // Plant species
-    public String species = "";
     
     // Plant growth images (depends on species)
     public GreenfootImage[] plantImages = new GreenfootImage[5];
@@ -25,19 +21,20 @@ public class Plant extends Actor
     public int[] yAdjust;
     
     // Pot instance
-    Pot potInstance;
+    public Pot potInstance;
     
     /*
      * Constructor
      */
-    public Plant(Pot potInstance, String species) {
+    public Plant(Pot potInstance) {
         waterTimer.mark(); // starts waterTimer
         
         this.potInstance = potInstance;
-        this.species = species;
+        
+        p = PlayerDataManager.getPlayerData().plantData[potInstance.index];
         
         // Load plant growth images depending on plant species
-        if(species.equals("test")) {
+        if(p.species.equals("test")) {
             for(int i = 0; i < 5; i++) {
                 plantImages[i] = new GreenfootImage("images/plant_stages/stage" + i + ".png");
                 plantImages[i].scale((int) (MyWorld.instance.scale * (double) plantImages[i].getWidth()), (int) ((double) MyWorld.instance.scale * plantImages[i].getHeight()));
@@ -49,50 +46,54 @@ public class Plant extends Actor
     public void act()
     {
         // Depending on age: set different plant growth image, set different growthStage, adjust y pos of image
-        if(age <= 0) {
-            growthStage = 0;
-            setImage(plantImages[growthStage]);
+        if(p.age <= 0) {
+            p.growthStage = 0;
             //setLocation(getX(), potInstance.getY() + yAdjust[growthStage]); // move image according to yAdjust
-        } else if(age <= 1) {
-            growthStage = 1;
-            setImage(plantImages[growthStage]);
+        } else if(p.age <= 1) {
+            p.growthStage = 1;
             //setLocation(getX(), potInstance.getY() + yAdjust[growthStage]); // move image according to yAdjust
-        } else if(age <= 2) {
-            growthStage = 2;
-            setImage(plantImages[growthStage]);
+        } else if(p.age <= 2) {
+            p.growthStage = 2;
             //setLocation(getX(), potInstance.getY() + yAdjust[growthStage]); // move image according to yAdjust
-        } else if(age <= 2) {
-            growthStage = 3;
-            setImage(plantImages[growthStage]);
+        } else if(p.age <= 2) {
+            p.growthStage = 3;
             //setLocation(getX(), potInstance.getY() + yAdjust[growthStage]); // move image according to yAdjust
         } else {
-            growthStage = 4;
-            setImage(plantImages[growthStage]);
+            p.growthStage = 4;
             //setLocation(getX(), potInstance.getY() + yAdjust[growthStage]); // move image according to yAdjust
         }
+        setImage(plantImages[p.growthStage]);
         
         // Plant becomes thirsty again after every 10 000 milliseconds
-        if(!thirsty) {
+        if(!p.thirsty) {
             // Since not thirsty, set water icon to be transparent
             potInstance.waterIcon.transparency = 0;
             if(waterTimer.millisElapsed() < 1000) { // 10000
                 return;
             }
-            thirsty = true;
+            p.thirsty = true;
             System.out.println("thirsty");
             System.out.println("!");
         }
         waterTimer.mark(); // reset waterTimer
         
         // If thirsty, make water icon appear
-        if(thirsty) {
+        if(p.thirsty) {
             potInstance.waterIcon.transparency = 255;
         }
     }
     
     public void waterPlant() {
-        potInstance.plant.thirsty = false;
-        potInstance.plant.waterTimer.mark(); // restart the thirst count
-        age++; // increase age
+        p.thirsty = false;
+        waterTimer.mark(); // restart the thirst count
+        p.age++; // increase age
+    }
+    
+    public void saveData() {
+        
+        if(p == null) {
+            p = new PlantData();
+        }
+        
     }
 }

@@ -10,7 +10,7 @@ public class Shop extends Actor
 {
     GreenfootImage shopIconImage;
     
-    // Create shopMenu variable. shopMenu now belong to each Shop instance
+    // Create shopMenu and shopButton variables. shopMenu instance and shopButton instances now belong to Shop instance
     public ShopMenu shopMenu;
     
     // Whether or not shop is open
@@ -22,6 +22,7 @@ public class Shop extends Actor
         shopIconImage.scale((int) (MyWorld.instance.scale * (double) shopIconImage.getWidth()), (int) ((double) MyWorld.instance.scale * shopIconImage.getHeight()));
         setImage(shopIconImage);
         
+        // Create shopMenu
         shopMenu = new ShopMenu();
         MyWorld.instance.addObject(shopMenu, 1055, 340);
     }
@@ -30,14 +31,14 @@ public class Shop extends Actor
     {
         MouseInfo mouseInfo = Greenfoot.getMouseInfo();
         
-        // Allow mouse to click and drag wateringCan around
+        // Check if mouse clicked on Shop icon, and if yes, open shopMenu
         if(mouseInfo != null) {
             if(!isOpen && Greenfoot.mouseClicked(this)) {
                 isOpen = true;
-                shopMenu.transparency = 255;
+                shopMenu.show();
             } else if(isOpen && Greenfoot.mouseClicked(this)) {
                 isOpen = false;
-                shopMenu.transparency = 0;
+                shopMenu.hide();
             }
         }
     }
