@@ -17,8 +17,11 @@ public class Plant extends Actor
     // Plant growth images (depends on species)
     public GreenfootImage[] plantImages = new GreenfootImage[5];
     
+    // Price value when sold (depends on species)
+    private int value;
+    
     // Adjustment variables for y pos compared to pot (depends on species and growth images of species)
-    public int[] yAdjust;
+    //public int[] yAdjust;
     
     // Pot instance
     public Pot potInstance;
@@ -40,6 +43,7 @@ public class Plant extends Actor
                 plantImages[i].scale((int) (MyWorld.instance.scale * (double) plantImages[i].getWidth()), (int) ((double) MyWorld.instance.scale * plantImages[i].getHeight()));
             }
             //yAdjust = new int[]{-35, -40, -60, -75, -75};
+            value = 100;
         }
     }
     
@@ -63,6 +67,14 @@ public class Plant extends Actor
             //setLocation(getX(), potInstance.getY() + yAdjust[growthStage]); // move image according to yAdjust
         }
         setImage(plantImages[p.growthStage]);
+        
+        // If right click on plant, sell plant, but only if full grown
+        MouseInfo mouseInfo = Greenfoot.getMouseInfo();
+        if(mouseInfo != null) {
+            if(p.growthStage == 4 && mouseInfo.getButton() == 3 && (Greenfoot.mouseClicked(this) || Greenfoot.mouseClicked(this.potInstance))) {
+                sellPlant();
+            }
+        }
         
         // Plant becomes thirsty again after every 10 000 milliseconds
         if(!p.thirsty) {
@@ -89,8 +101,13 @@ public class Plant extends Actor
         p.age++; // increase age
     }
     
+    public void sellPlant() {
+        PlayerDataManager.getPlayerData().currency += value;
+        MyWorld.instance.uiManager.currencyLabel.setValue(PlayerDataManager.getPlayerData().currency);
+        System.out.println("Sold!");
+    }
+    
     public void saveData() {
-        
         if(p == null) {
             p = new PlantData();
         }

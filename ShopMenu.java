@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class ShopMenu extends Actor
 {
-    public ShopButton shopButton1;
+    public static ShopButton shopButton1;
     
     GreenfootImage shopImage;
     

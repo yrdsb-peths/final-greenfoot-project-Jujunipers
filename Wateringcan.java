@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class WateringCan extends Actor
+public class WateringCan extends SmoothMover
 {
     boolean dragging = false;
     // Original location of watering can
@@ -48,6 +48,11 @@ public class WateringCan extends Actor
         
     }
     
+    /*
+     * Tries to water plant that wateringCan is hovering over. If plant is thirsty, then water. Otherwise, don't water.
+     * 
+     * @return boolean whether or not plant is watered
+     */
     public boolean tryToWaterSucceeds() {
         if(isTouching(Pot.class)) {
             Pot potInstance = (Pot) getOneIntersectingObject(Pot.class); // gets the specific pot instance that the mouse is touching

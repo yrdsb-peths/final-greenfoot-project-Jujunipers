@@ -41,7 +41,7 @@ public class Pot extends Actor
         // Create plant
         plant = new Plant(this);
         int plantX = this.getX() + 5;
-        int plantY = this.getY() - 30;
+        int plantY = this.getY() - 75;
         //int plantY = this.getY() + plant.yAdjust[plant.growthStage];
         MyWorld.instance.addObject(plant, plantX, plantY);
         

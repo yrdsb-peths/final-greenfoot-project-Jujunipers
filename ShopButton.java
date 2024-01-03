@@ -46,13 +46,13 @@ public class ShopButton extends Actor
             if(hasMoney && Greenfoot.mouseClicked(this)) {
                 // Decrease currency
                 PlayerDataManager.getPlayerData().currency -= this.price;
-                MyWorld.instance.currencyLabel.setValue(PlayerDataManager.getPlayerData().currency);
+                MyWorld.instance.uiManager.currencyLabel.setValue(PlayerDataManager.getPlayerData().currency);
                 System.out.println("bought!");
                 
                 // Increase item amount in inventory
                 if(item.equals("seeds")) {
                     PlayerDataManager.getPlayerData().numSeeds ++;
-                    MyWorld.instance.seed.seedCounter.setValue(PlayerDataManager.getPlayerData().numSeeds);
+                    MyWorld.toolManager.seed.seedCounter.setValue(PlayerDataManager.getPlayerData().numSeeds);
                 }
             }
         }

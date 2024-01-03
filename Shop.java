@@ -11,7 +11,7 @@ public class Shop extends Actor
     GreenfootImage shopIconImage;
     
     // Create shopMenu and shopButton variables. shopMenu instance and shopButton instances now belong to Shop instance
-    public ShopMenu shopMenu;
+    public static ShopMenu shopMenu;
     
     // Whether or not shop is open
     public boolean isOpen;
