@@ -40,10 +40,8 @@ public class PlayerDataManager
             
             o.close();
             f.close();
-        } catch(FileNotFoundException e) {
-            System.out.println("File not found");
-        } catch (IOException e) {
-            System.out.println("Error initializing stream when trying to save, check your file access permissions?");
+        } catch(Exception ex) {
+            ex.printStackTrace();
         }
     }
     
@@ -57,14 +55,8 @@ public class PlayerDataManager
             
             oi.close();
             fi.close();
-        } catch(FileNotFoundException e) {
-            System.out.println("File not found, creating new save...");
-        } catch (IOException e) {
-            System.out.println("Error initializing stream when trying to load, check your file access permissions?");
-        } catch (ClassNotFoundException e) {
-            // TODO Auto-generated catch block
-            System.out.println("OOPS!");
-            e.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
         if(playerData == null) {
             playerData = new PlayerData();

@@ -18,7 +18,7 @@ public class MyWorld extends World
     public Pot currentPotInstance;
     
     // Create playerData instance
-    public PlayerData playerData = new PlayerData();
+    //public PlayerData playerData = new PlayerData();
     
     // Create currency Label
     public Label currencyLabel;

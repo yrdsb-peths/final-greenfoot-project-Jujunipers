@@ -36,7 +36,7 @@ public class Seed extends Actor
         setImage(seedImage);
         
         // Create seedCounter number, but only addObject if seed instance is the original icon
-        seedCounter = new Label(MyWorld.instance.playerData.numSeeds, 35);
+        seedCounter = new Label(PlayerDataManager.getPlayerData().numSeeds, 35);
         if(isOgIcon) {
             MyWorld.instance.addObject(seedCounter, ogX + 30, ogY + 30);
         }
@@ -46,7 +46,7 @@ public class Seed extends Actor
     {
         // Only allow mouse to click and drag seedback around if numSeeds > 0
         
-        if(MyWorld.instance.playerData.numSeeds >0) {
+        if(PlayerDataManager.getPlayerData().numSeeds >0) {
         
             MouseInfo mouseInfo = Greenfoot.getMouseInfo();
             
@@ -60,14 +60,14 @@ public class Seed extends Actor
                     
                     Pot potInstance = (Pot) getOneIntersectingObject(Pot.class); // gets the specific pot instance that the mouse is touching
                     // Plant seed in pot, but only if it doesn't already have a plant and player still has seeds left
-                    if(isTouching(Pot.class) && !potInstance.hasPlant && MyWorld.instance.playerData.numSeeds > 0) {
+                    if(isTouching(Pot.class) && !potInstance.hasPlant && PlayerDataManager.getPlayerData().numSeeds > 0) {
                         setLocation(ogX, ogY); // temporary, replace with planting animation
                         
                         // Create plant
                         potInstance.plantSeed(species);
                         
                         // Change numSeeds value in PlayerData and label image
-                        MyWorld.instance.playerData.numSeeds--;
+                        PlayerDataManager.getPlayerData().numSeeds--;
                     } else {
                         setLocation(ogX, ogY); // return seedbag to og location when drag is released
                     }
@@ -79,6 +79,6 @@ public class Seed extends Actor
             }
         }
         // Set value of numSeeds in its label, and update the label image
-        seedCounter.setValue(MyWorld.instance.playerData.numSeeds);
+        seedCounter.setValue(PlayerDataManager.getPlayerData().numSeeds);
     }
 }

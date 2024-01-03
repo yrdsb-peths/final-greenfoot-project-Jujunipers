@@ -51,8 +51,8 @@ public class ShopButton extends Actor
                 
                 // Increase item amount in inventory
                 if(item.equals("seeds")) {
-                    MyWorld.instance.playerData.numSeeds ++;
-                    MyWorld.instance.seed.seedCounter.setValue(MyWorld.instance.playerData.numSeeds);
+                    PlayerDataManager.getPlayerData().numSeeds ++;
+                    MyWorld.instance.seed.seedCounter.setValue(PlayerDataManager.getPlayerData().numSeeds);
                 }
             }
         }

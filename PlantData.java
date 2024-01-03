@@ -1,11 +1,15 @@
+import java.io.Serializable;
+
 /**
  * Write a description of class PlantData here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class PlantData  
+public class PlantData implements Serializable
 {
+    private static final long serialVersionUID = 1L;
+    
     public boolean thirsty = false;
     
     public int age = 0;
