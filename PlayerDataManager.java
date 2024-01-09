@@ -7,10 +7,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 /**
- * Write a description of class PlayerDataLoader here.
+ * Manages the loading and saving of player's data.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Julia
+ * @version January 2024
  */
 public class PlayerDataManager  
 {
@@ -50,11 +50,13 @@ public class PlayerDataManager
             FileInputStream fi = new FileInputStream(new File(SAVE_FILE_NAME));
             ObjectInputStream oi = new ObjectInputStream(fi);
             
-            // Read objects, sets playerData
+            // Read objects, set playerData
             playerData = (PlayerData) oi.readObject();
             
             oi.close();
             fi.close();
+        } catch (FileNotFoundException e) {
+            
         } catch (Exception ex) {
             ex.printStackTrace();
         }

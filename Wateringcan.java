@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class WateringCan here.
+ * Watering can in tool bar that player can drag to water plants.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Julia
+ * @version December 2023
  */
 public class WateringCan extends SmoothMover
 {

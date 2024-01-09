@@ -1,20 +1,18 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class ToolManager here.
+ * Creates all items in the toolbar.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Julia
+ * @version December 2023
  */
-public class ToolManager extends Actor
+public class ToolManager
 {
     // Create tool variables
     public static WateringCan wateringCan;
     public static Seed seed;
     
     public ToolManager() {
-        // Create all tools in menu
-        
         // Create wateringCan
         wateringCan = new WateringCan();
         MyWorld.instance.addObject(wateringCan, wateringCan.ogX, wateringCan.ogY);
@@ -24,10 +22,5 @@ public class ToolManager extends Actor
         MyWorld.instance.addObject(seed, seed.ogX, seed.ogY);
         seed = new Seed(false, "test"); // isOgIcon = false, draggable icon, doesn't count numSeeds
         MyWorld.instance.addObject(seed, seed.ogX, seed.ogY);
-    }
-    
-    public void act()
-    {
-        // Add your action code here.
     }
 }

@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class ShopMenu here.
+ * Shop menu that player can open/close.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Julia
+ * @version December 2023
  */
 public class ShopMenu extends Actor
 {

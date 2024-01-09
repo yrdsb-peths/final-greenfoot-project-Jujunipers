@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Plant here.
+ * Each plant that the player grows.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Julia 
+ * @version December 2023
  */
 public class Plant extends Actor
 {
@@ -68,14 +68,6 @@ public class Plant extends Actor
         }
         setImage(plantImages[p.growthStage]);
         
-        // If right click on plant, sell plant, but only if full grown
-        MouseInfo mouseInfo = Greenfoot.getMouseInfo();
-        if(mouseInfo != null) {
-            if(p.growthStage == 4 && mouseInfo.getButton() == 3 && (Greenfoot.mouseClicked(this) || Greenfoot.mouseClicked(this.potInstance))) {
-                sellPlant();
-            }
-        }
-        
         // Plant becomes thirsty again after every 10 000 milliseconds
         if(!p.thirsty) {
             // Since not thirsty, set water icon to be transparent
@@ -93,6 +85,16 @@ public class Plant extends Actor
         if(p.thirsty) {
             potInstance.waterIcon.transparency = 255;
         }
+        
+        // If right click on plant, sell plant, but only if full grown
+        MouseInfo mouseInfo = Greenfoot.getMouseInfo();
+        if(mouseInfo != null) {
+            if(p.growthStage == 4 && mouseInfo.getButton() == 3 && (Greenfoot.mouseClicked(this) || Greenfoot.mouseClicked(this.potInstance))) {
+                sellPlant();
+            }
+        }
+        
+        //saveData();
     }
     
     public void waterPlant() {
@@ -102,15 +104,20 @@ public class Plant extends Actor
     }
     
     public void sellPlant() {
-        PlayerDataManager.getPlayerData().currency += value;
-        MyWorld.instance.uiManager.currencyLabel.setValue(PlayerDataManager.getPlayerData().currency);
+        MyWorld.instance.removeObject(this);
+        MyWorld.instance.removeObject(this.potInstance.waterIcon);
+        potInstance.hasPlant = false;
+        EconomyManager.addMoney(value);
+        p = null;
+        System.out.println(p);
         System.out.println("Sold!");
     }
     
+    /*
     public void saveData() {
         if(p == null) {
             p = new PlantData();
         }
-        
     }
+    */
 }

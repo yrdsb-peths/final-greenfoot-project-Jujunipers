@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class ShopButton here.
+ * Button for each item that can be bought in the shop menu.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Julia
+ * @version December 2023
  */
 public class ShopButton extends Actor
 {
@@ -39,14 +39,13 @@ public class ShopButton extends Actor
         priceLabel.setLocation(getX() - 4, getY() + 51);
         
         MouseInfo mouseInfo = Greenfoot.getMouseInfo();
-        boolean hasMoney = PlayerDataManager.getPlayerData().currency >= this.price; // prolly don't needa be asked every frame
+        
         
         // Check if mouse clicked on ShopButton, and if yes, buy item
         if(mouseInfo != null) {
-            if(hasMoney && Greenfoot.mouseClicked(this)) {
+            if(EconomyManager.hasEnoughMoney(this.price) && Greenfoot.mouseClicked(this)) {
                 // Decrease currency
-                PlayerDataManager.getPlayerData().currency -= this.price;
-                MyWorld.instance.uiManager.currencyLabel.setValue(PlayerDataManager.getPlayerData().currency);
+                EconomyManager.addMoney(-price);
                 System.out.println("bought!");
                 
                 // Increase item amount in inventory

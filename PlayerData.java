@@ -1,10 +1,10 @@
 import java.io.Serializable;
 
 /**
- * Write a description of class PlayerData here.
+ * Contains all player data to be saved in player's save file.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Julia 
+ * @version January 2024
  */
 public class PlayerData implements Serializable
 {

@@ -1,16 +1,17 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class MyWorld here.
+ * The game world.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Julia
+ * @version December 2023
  */
 public class MyWorld extends World
 {
     // Create the variables here (so that they can be accessed from other classes)
     public static ToolManager toolManager;
     public static UIManager uiManager;
+    public static EconomyManager economyManager;
     
     
     
@@ -37,7 +38,6 @@ public class MyWorld extends World
      */
     public MyWorld()
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         // UI that I drew - canvas is 1600x900, but doesn't fit my comp screen,
         // so I instead made MyWorld 1.5x those dimensions
         super(1200, 675, 1);
@@ -50,11 +50,16 @@ public class MyWorld extends World
         bgImage.scale(1200, 675);
         this.setBackground(bgImage);
         
+        
+        EconomyManager economyManager = new EconomyManager();
         // Create toolManager, which manages all tools
-        toolManager = new ToolManager();
+        ToolManager toolManager = new ToolManager();
         
         // Create uIManager, which manages all UI elements (like buttons)
-        uiManager = new UIManager();
+        UIManager uiManager = new UIManager();
+        
+        Cheat cheat = new Cheat();
+        addObject(cheat, 0, 0);
             
         // Create pots in pot array
         for(int i = 0; i < pots.length; i++) {
@@ -66,6 +71,8 @@ public class MyWorld extends World
         
         // Set order of object images
         setPaintOrder(Label.class, ShopButton.class, ShopMenu.class, Shop.class, Seed.class, WateringCan.class, WaterIcon.class, Pot.class, Plant.class);
+        
+        System.out.println("myworldhaahha");
     }
     
     public void stopped() {

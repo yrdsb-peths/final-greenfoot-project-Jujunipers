@@ -1,30 +1,24 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class UIManager here.
+ * Creates all items releated to UI.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Julia
+ * @version December 2023
  */
-public class UIManager extends Actor
+public class UIManager
 {
-    // Create currency Label
-    public static Label currencyLabel;
+    
+    public static CoinLabel coinLabel;
     
     public static Shop shopIcon;
     
     public UIManager() {
-        // Create currency Label
-        currencyLabel = new Label(PlayerDataManager.getPlayerData().currency, 40);
-        MyWorld.instance.addObject(currencyLabel, 140, 610);
+        // Create coinLabel
+        coinLabel = new CoinLabel();
         
         // Create shopIcon
         shopIcon = new Shop();
         MyWorld.instance.addObject(shopIcon, 1097, 588);
-    }
-    
-    public void act()
-    {
-        
     }
 }

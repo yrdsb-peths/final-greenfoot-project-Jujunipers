@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Pot here.
+ * Pot that contains each plant.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Julia
+ * @version December 2023
  */
 public class Pot extends Actor
 {
@@ -63,6 +63,9 @@ public class Pot extends Actor
         // Create a plant from save file
         if(PlayerDataManager.getPlayerData().plantData[index] != null) { // null means there's no plant in that pot
             createPlant();
+            System.out.println("!null");
+        } else {
+            System.out.println("null");
         }
     }
 }
