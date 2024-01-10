@@ -23,7 +23,7 @@ public class ShopButton extends Actor
         
         // Set price
         if(item.equals("seeds")) {
-            price = 300;
+            price = 100;
         }
         
         // Create price label, display price
