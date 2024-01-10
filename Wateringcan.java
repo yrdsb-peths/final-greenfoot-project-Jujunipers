@@ -1,17 +1,26 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Watering can
+ * Watering can in tool bar that player can drag to water plants.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Julia
+ * @version December 2023
  */
-public class Wateringcan extends Actor
+public class WateringCan extends SmoothMover
 {
     boolean dragging = false;
     // Original location of watering can
-    public int ogX = 25;
-    public int ogY = 25;
+    public int ogX = 80;
+    public int ogY = 85;
+    
+    private GreenfootImage wateringCanImage;
+    
+    public WateringCan() {
+        // Set wateringCan image
+        wateringCanImage = new GreenfootImage("images/watering_can.png");
+        wateringCanImage.scale((int) (MyWorld.instance.scale * (double) wateringCanImage.getWidth()), (int) ((double) MyWorld.instance.scale * wateringCanImage.getHeight()));
+        setImage(wateringCanImage);
+    }
     
     public void act()
     {
@@ -24,15 +33,12 @@ public class Wateringcan extends Actor
             }
             if(dragging && Greenfoot.mouseDragEnded(this)) {
                 dragging = false;
-                
-                Pot potInstance = (Pot) getOneIntersectingObject(Pot.class); // gets the specific pot instance that the mouse is touching
-                // If wateringCan is over plant by end of drag, water plant, but only if thirsty. If not thirsty, return wateringCan to og location
-                if(isTouching(Pot.class) && isTouching(Plant.class) && potInstance.plant.thirsty) {
-                    potInstance.plant.waterPlant();
-                    setLocation(ogX, ogY); // temporary, replace with watering animation
+                if(tryToWaterSucceeds()) {
+                    setLocation(ogX, ogY); // return wateringCan to og location when drag is released
                 } else {
                     setLocation(ogX, ogY); // return wateringCan to og location when drag is released
                 }
+                
             }
             // Make wateringCan follow mouse if dragging is true
             if(dragging) {
@@ -40,8 +46,32 @@ public class Wateringcan extends Actor
             }
         }
         
-        
-        
-        
+    }
+    
+    /*
+     * Tries to water plant that wateringCan is hovering over. If plant is thirsty, then water. Otherwise, don't water.
+     * 
+     * @return boolean whether or not plant is watered
+     */
+    public boolean tryToWaterSucceeds() {
+        if(isTouching(Pot.class)) {
+            Pot potInstance = (Pot) getOneIntersectingObject(Pot.class); // gets the specific pot instance that the mouse is touching
+            if(PlayerDataManager.getPlayerData().plantData != null) { // if the plant in that pot exists, try to water it
+                if(PlayerDataManager.getPlayerData().plantData[potInstance.index].thirsty) { // if the plant is thirsty, water it and return true for success in watering plant
+                    potInstance.plant.waterPlant();
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        } else if(isTouching(Plant.class)) {
+            Plant plantInstance = (Plant) getOneIntersectingObject(Plant.class);
+            if(PlayerDataManager.getPlayerData().plantData[plantInstance.potInstance.index].thirsty) { // if plant is thirsty, try to water it
+                plantInstance.waterPlant();
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 }
