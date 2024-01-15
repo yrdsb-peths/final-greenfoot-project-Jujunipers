@@ -12,11 +12,15 @@ public class PlantData implements Serializable
     
     public boolean thirsty = false;
     
+    public long lastWateredTime;
+    
     public int age = 0;
     public int growthStage = 0; // growthStage determines image to use for plant, as well as amount of y to adjust from pot
     
     // Plant species
     public String species = "";
+    
+    
     
     
 

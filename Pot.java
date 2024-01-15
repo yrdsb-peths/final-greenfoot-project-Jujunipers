@@ -13,7 +13,7 @@ public class Pot extends Actor
     
     // Create plant and waterIcon variables. plants and waterIcons now belong to each pot instance
     public Plant plant;
-    public WaterIcon waterIcon;
+    
     
     
     private GreenfootImage potImage;
@@ -25,8 +25,6 @@ public class Pot extends Actor
         potImage = new GreenfootImage("images/pot.png");
         potImage.scale((int) (MyWorld.instance.scale * (double) potImage.getWidth()), (int) ((double) MyWorld.instance.scale * potImage.getHeight()));
         setImage(potImage);
-        
-        
     }
     
     public void act()
@@ -46,10 +44,9 @@ public class Pot extends Actor
         MyWorld.instance.addObject(plant, plantX, plantY);
         
         // Create plant's waterIcon
-        waterIcon = new WaterIcon();
         int waterIconX = plantX + 30;
         int waterIconY = plantY + 20;
-        MyWorld.instance.addObject(waterIcon, waterIconX, waterIconY);
+        MyWorld.instance.addObject(plant.waterIcon, waterIconX, waterIconY);
     }
     
     // creates new plant data

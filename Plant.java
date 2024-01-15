@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.time.Instant;
 
 /**
  * Each plant that the player grows.
@@ -10,6 +11,9 @@ public class Plant extends Actor
 {
     // p variable accesses the object at the index of the plantData[] array in PlayerData that this plant's variables are saved into
     PlantData p;
+    
+    // Create waterIcon associated with this plant instance
+    public WaterIcon waterIcon;
         
     
     SimpleTimer waterTimer = new SimpleTimer();
@@ -34,6 +38,8 @@ public class Plant extends Actor
         
         this.potInstance = potInstance;
         
+        waterIcon = new WaterIcon();
+        
         p = PlayerDataManager.getPlayerData().plantData[potInstance.index];
         
         // Load plant growth images depending on plant species
@@ -45,6 +51,12 @@ public class Plant extends Actor
             //yAdjust = new int[]{-35, -40, -60, -75, -75};
             value = 100;
         }
+        
+        // Get the current epoch time in seconds
+        long epochSeconds = Instant.now().getEpochSecond();
+        
+        // lastWateredTime is now!
+        p.lastWateredTime = epochSeconds;
     }
     
     public void act()
@@ -71,19 +83,17 @@ public class Plant extends Actor
         // Plant becomes thirsty again after every 10 000 milliseconds
         if(!p.thirsty) {
             // Since not thirsty, set water icon to be transparent
-            potInstance.waterIcon.transparency = 0;
+            waterIcon.transparency = 0;
             if(waterTimer.millisElapsed() < 1000) { // 10000
                 return;
             }
             p.thirsty = true;
-            System.out.println("thirsty");
-            System.out.println("!");
         }
         waterTimer.mark(); // reset waterTimer
         
         // If thirsty, make water icon appear
         if(p.thirsty) {
-            potInstance.waterIcon.transparency = 255;
+            waterIcon.transparency = 255;
         }
         
         // If right click on plant, sell plant, but only if full grown
@@ -93,8 +103,6 @@ public class Plant extends Actor
                 sellPlant();
             }
         }
-        
-        //saveData();
     }
     
     public void waterPlant() {
@@ -105,19 +113,23 @@ public class Plant extends Actor
     
     public void sellPlant() {
         MyWorld.instance.removeObject(this);
-        MyWorld.instance.removeObject(this.potInstance.waterIcon);
+        MyWorld.instance.removeObject(waterIcon);
         potInstance.hasPlant = false;
         EconomyManager.addMoney(value);
-        p = null;
-        System.out.println(p);
-        System.out.println("Sold!");
+        PlayerDataManager.getPlayerData().plantData[potInstance.index] = null;
     }
     
-    /*
+    /* Just in case I implement manual saving
     public void saveData() {
         if(p == null) {
             p = new PlantData();
         }
     }
     */
+   
+   /*
+   public boolean isThirsty() {
+       
+   }
+   */
 }
