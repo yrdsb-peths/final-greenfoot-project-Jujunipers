@@ -117,6 +117,7 @@ public class Plant extends Actor
         potInstance.hasPlant = false;
         EconomyManager.addMoney(value);
         PlayerDataManager.getPlayerData().plantData[potInstance.index] = null;
+        MyWorld.audioManager.soldSFX.play();
     }
     
     /* Just in case I implement manual saving

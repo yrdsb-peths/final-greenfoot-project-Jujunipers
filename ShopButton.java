@@ -51,7 +51,7 @@ public class ShopButton extends Actor
             if(EconomyManager.hasEnoughMoney(this.price) && Greenfoot.mouseClicked(this)) {
                 // Decrease currency
                 EconomyManager.addMoney(-price);
-                System.out.println("bought!");
+                MyWorld.audioManager.boughtSFX.play();
                 
                 // Increase item amount in inventory
                 if(item.equals("seeds")) {
