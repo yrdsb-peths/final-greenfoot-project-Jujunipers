@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.time.Instant;
 
 /**
  * Pot that contains each plant.
@@ -53,6 +54,13 @@ public class Pot extends Actor
     public void plantSeed(String species) {
         PlayerDataManager.getPlayerData().plantData[index] = new PlantData(); // makes it not null (creates the object lol)
         PlayerDataManager.getPlayerData().plantData[index].species = species;
+        
+        // Get the current epoch time in seconds
+        long epochSeconds = Instant.now().getEpochSecond();
+        
+        // lastWateredTime is now!
+        PlayerDataManager.getPlayerData().plantData[index].lastWateredTime = epochSeconds;
+        
         createPlant();
     }
     
