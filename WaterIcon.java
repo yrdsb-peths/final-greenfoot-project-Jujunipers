@@ -32,7 +32,6 @@ public class WaterIcon extends Actor
         waterIcon = new GreenfootImage("images/water-droplet.png");
         waterIcon.scale(minX + (int)(thirstPercent*maxX), minY + (int)(thirstPercent*maxY));
         setImage(waterIcon);
-        System.out.println(minX + (int)(thirstPercent*maxX));
     }
     
     public void show() {

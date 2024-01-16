@@ -92,12 +92,13 @@ public class Plant extends Actor
         long epochSeconds = Instant.now().getEpochSecond();
         p.thirst = (int) (epochSeconds - p.lastWateredTime); // set thirst equal to the number of seconds that passed since last watering
         p.thirst = Math.min(p.thirst, 600); // min returns the smaller of p.thirst and 600, sets p.thirst to that -> ensures p.thirst doesn't go over 600
-        // Increase size of waterIcon
-        waterIcon.setScale(p.thirst/600.0);
+        
         
         // If thirsty, make water icon appear
         if(p.isThirsty()) {
             waterIcon.show();
+            // Increase size of waterIcon
+            waterIcon.setScale(p.thirst/600.0);
         }
         
         // If right click on plant, sell plant, but only if full grown
@@ -113,6 +114,7 @@ public class Plant extends Actor
         //waterTimer.mark(); // restart the thirst count
         p.age++; // increase age
         waterIcon.hide(); // hide waterIcon
+        System.out.println("hidden");
         
         // Convert all thirst to currentGrowth, then reset thirst
         p.currentGrowth = p.thirst;
