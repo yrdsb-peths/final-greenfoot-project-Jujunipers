@@ -62,6 +62,9 @@ public class Pot extends Actor
         PlayerDataManager.getPlayerData().plantData[index].lastWateredTime = epochSeconds;
         
         createPlant();
+        
+        // Play plantSFX
+        MyWorld.audioManager.plantSFX.play();
     }
     
     public void tryLoadPlant() {

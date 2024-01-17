@@ -111,6 +111,9 @@ public class Plant extends Actor
     }
     
     public void waterPlant() {
+        // Play wateringSFX
+        MyWorld.audioManager.wateringSFX.play();
+        
         //waterTimer.mark(); // restart the thirst count
         p.age++; // increase age
         waterIcon.hide(); // hide waterIcon
