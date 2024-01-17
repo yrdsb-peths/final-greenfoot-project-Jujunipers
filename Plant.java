@@ -75,6 +75,7 @@ public class Plant extends Actor
         }
         setImage(plantImages[p.growthStage]);
         
+        
         /*
         // Plant becomes thirsty again after every 10 000 milliseconds
         if(!p.thirsty) {
