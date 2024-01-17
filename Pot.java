@@ -71,9 +71,8 @@ public class Pot extends Actor
         // Create a plant from save file
         if(PlayerDataManager.getPlayerData().plantData[index] != null) { // null means there's no plant in that pot
             createPlant();
-            System.out.println("!null");
         } else {
-            System.out.println("null");
+            
         }
     }
 }

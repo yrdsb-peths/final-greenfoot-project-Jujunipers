@@ -8,7 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class TitleScreen extends World
 {
-
+    private GreenfootImage bgImage = new GreenfootImage("images/title_screen.png");
+    
     /**
      * Constructor for objects of class TitleScreen.
      * 
@@ -17,7 +18,8 @@ public class TitleScreen extends World
     {    
         super(1200, 675, 1);
         
-        setBackground("images/bg.png");
+        bgImage.scale(1200, 675);
+        setBackground(bgImage);
         Greenfoot.setWorld(this);
     }
     
