@@ -1,6 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.time.Instant;
 import java.lang.Math;
+import java.util.List;
 
 /**
  * Each plant that the player grows.
@@ -10,6 +11,9 @@ import java.lang.Math;
  */
 public class Plant extends Actor
 {
+    private boolean isHovering = false;
+    private boolean fullyGrown = false;
+    
     // p variable accesses the object at the index of the plantData[] array in PlayerData that this plant's variables are saved into
     PlantData p;
     
@@ -32,7 +36,8 @@ public class Plant extends Actor
     // Pot instance
     public Pot potInstance;
     
-    private boolean fullyGrown = false;
+    // Label with right-click selling instructions
+    private Label sellInstructions = new Label("Right-click to sell!", 35);
     
     /*
      * Constructor
@@ -75,16 +80,20 @@ public class Plant extends Actor
             //setLocation(getX(), potInstance.getY() + yAdjust[growthStage]); // move image according to yAdjust
         } else {
             p.growthStage = 4;
-            // Play sparkly animation if plant just grew to final stage (first time)
-            if (!fullyGrown) {
-                sparkles.playSparkleAnim();
+            // Create plant's sparkle animation, but only if just fully grew
+            if(!fullyGrown) {
+                fullyGrown = true;
+                System.out.println(fullyGrown);
+                MyWorld.instance.addObject(sparkles, this.getX(), this.getY());
             }
+            displaySellInstructionsOnHover();
             //setLocation(getX(), potInstance.getY() + yAdjust[growthStage]); // move image according to yAdjust
         }
         setImage(plantImages[p.growthStage]);
         
         
         /*
+        /* Old code using simpleTimer to count thirstiness
         // Plant becomes thirsty again after every 10 000 milliseconds
         if(!p.thirsty) {
             // Since not thirsty, set water icon to be transparent
@@ -126,7 +135,6 @@ public class Plant extends Actor
         //waterTimer.mark(); // restart the thirst count
         p.age++; // increase age
         waterIcon.hide(); // hide waterIcon
-        System.out.println("hidden");
         
         // Convert all thirst to currentGrowth, then reset thirst
         p.currentGrowth = p.thirst;
@@ -146,11 +154,27 @@ public class Plant extends Actor
         MyWorld.audioManager.soldSFX.play();
     }
     
-    /* Just in case I implement manual saving
-    public void saveData() {
-        if(p == null) {
-            p = new PlantData();
+    public void displaySellInstructionsOnHover() {
+        if(mouseIsHoveringOverPlant()) {
+            sellInstructions.setFillColor(Color.WHITE);
+            sellInstructions.setLineColor(Label.transparent);
+            MyWorld.instance.addObject(sellInstructions, 1050, 30);
+        } else {
+            sellInstructions.setFillColor(Label.transparent);
+            sellInstructions.setLineColor(Label.transparent);
         }
     }
-    */
+    
+    public boolean mouseIsHoveringOverPlant() {
+        MouseInfo mouseInfo = Greenfoot.getMouseInfo();
+        if(mouseInfo != null) {
+            // Coordinates for boundaries of plant + pot
+            int plantLeft = this.getX() - (this.getImage().getWidth())/2;
+            int plantRight = this.getX() + (this.getImage().getWidth())/2;
+            int plantTop = this.getY() - (this.getImage().getHeight())/2;
+            int plantBottom = this.getY() + (this.getImage().getHeight())/2;
+            return mouseInfo.getX() > plantLeft && mouseInfo.getX() < plantRight && mouseInfo.getY() > plantTop && mouseInfo.getY() < plantBottom;
+        }
+        return false;
+    }
 }

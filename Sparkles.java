@@ -10,7 +10,6 @@ public class Sparkles extends Actor
 {
     // SparkleAnim images
     private GreenfootImage[] sparkles = new GreenfootImage[3];
-    private GreenfootImage transparentImage = new GreenfootImage("images/sparkle_anim/sparkle0.png"); // transparent version of sparkle
     private int imageIndex = 0; // keeps track of the frame that animation is on
     
     Plant plantInstance;
@@ -26,23 +25,12 @@ public class Sparkles extends Actor
             sparkles[i] = new GreenfootImage("images/sparkle_anim/sparkle" + i + ".png");
         }
         
-        // Set transparent image as default
-        transparentImage.setTransparency(0);
-        setImage(transparentImage);
-        
         animationTimer.mark(); // resets timer to start at 0
     }
     
     public void act()
     {
-        /*
-        // Press F to play sparkle animation
-        if(Greenfoot.isKeyDown("F") || Greenfoot.isKeyDown("f")) {
-            playSparkleAnim();
-        } else {
-            hide();
-        }
-        */
+        playSparkleAnim();
     }
     
     public void playSparkleAnim() {
@@ -65,6 +53,6 @@ public class Sparkles extends Actor
     }
     
     public void hide() {
-        setImage(transparentImage);
+        MyWorld.instance.removeObject(this);
     }
 }
