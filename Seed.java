@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author Julia
  * @version December 2023
  */
-public class Seed extends SmoothMover
+public class Seed extends Actor
 {
     boolean dragging = false;
     boolean isOgIcon;

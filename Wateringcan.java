@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author Julia
  * @version December 2023
  */
-public class WateringCan extends SmoothMover
+public class WateringCan extends Actor
 {
     boolean dragging = false;
     // Original location of watering can
