@@ -54,7 +54,7 @@ public class Plant extends Actor
                 plantImages[i].scale((int) (MyWorld.instance.scale * (double) plantImages[i].getWidth()), (int) ((double) MyWorld.instance.scale * plantImages[i].getHeight()));
             }
             //yAdjust = new int[]{-35, -40, -60, -75, -75};
-            value = 100;
+            value = 150;
         }
         
         growthTimer.mark(); // starts growthTimer
@@ -80,14 +80,12 @@ public class Plant extends Actor
             // Create plant's sparkle animation, but only if just fully grew
             if(!fullyGrown) {
                 fullyGrown = true;
-                System.out.println(fullyGrown);
                 MyWorld.instance.addObject(sparkles, this.getX(), this.getY());
             }
             displaySellInstructionsOnHover();
             //setLocation(getX(), potInstance.getY() + yAdjust[growthStage]); // move image according to yAdjust
         }
         setImage(plantImages[p.growthStage]);
-        //System.out.println(p.growthStage);
        
         // Increase plant thirst
         long epochSeconds = Instant.now().getEpochSecond();
@@ -118,11 +116,7 @@ public class Plant extends Actor
         tooThirsty = p.thirst == maxThirst;
         if(!tooThirsty) {
             p.currentGrowth++;
-            System.out.println("thirst: " + p.thirst);
-        } else {
-            System.out.println("too thirsty");
         }
-        System.out.println(p.currentGrowth);
     }
     
     public void waterPlant() {
@@ -133,15 +127,12 @@ public class Plant extends Actor
         waterIcon.hide(); // hide waterIcon
         
         // Convert all thirst to add to currentGrowth, then reset thirst
-        System.out.println(p.thirst / 100.0);
         p.currentGrowth += p.thirst / 100.0;
         p.thirst = 0;
         
         // Set last watered time to now:
         long epochSeconds = Instant.now().getEpochSecond();
         p.lastWateredTime = epochSeconds;
-        
-        System.out.println(p.currentGrowth);
     }
     
     public void sellPlant() {
