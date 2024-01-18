@@ -2,10 +2,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.time.Instant;
 
 /**
- * Write a description of class Cheat here.
+ * Commands to allow player to cheat/progress through the game faster
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Julia
+ * @version January
  */
 public class Cheat extends Actor
 {

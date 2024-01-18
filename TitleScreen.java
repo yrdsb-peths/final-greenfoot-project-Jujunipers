@@ -10,10 +10,6 @@ public class TitleScreen extends World
 {
     private GreenfootImage bgImage = new GreenfootImage("images/title_screen.png");
     
-    /**
-     * Constructor for objects of class TitleScreen.
-     * 
-     */
     public TitleScreen()
     {    
         super(1200, 675, 1);
