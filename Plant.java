@@ -13,8 +13,9 @@ public class Plant extends Actor
     // p variable accesses the object at the index of the plantData[] array in PlayerData that this plant's variables are saved into
     PlantData p;
     
-    // Create waterIcon associated with this plant instance
+    // Create waterIcon, sparkleAnim associated with this plant instance
     public WaterIcon waterIcon;
+    public Sparkles sparkles;
         
     
     //SimpleTimer waterTimer = new SimpleTimer();
@@ -31,6 +32,8 @@ public class Plant extends Actor
     // Pot instance
     public Pot potInstance;
     
+    private boolean fullyGrown = false;
+    
     /*
      * Constructor
      */
@@ -40,6 +43,7 @@ public class Plant extends Actor
         this.potInstance = potInstance;
         
         waterIcon = new WaterIcon();
+        sparkles = new Sparkles(this);
         
         p = PlayerDataManager.getPlayerData().plantData[potInstance.index];
         
@@ -71,6 +75,10 @@ public class Plant extends Actor
             //setLocation(getX(), potInstance.getY() + yAdjust[growthStage]); // move image according to yAdjust
         } else {
             p.growthStage = 4;
+            // Play sparkly animation if plant just grew to final stage (first time)
+            if (!fullyGrown) {
+                sparkles.playSparkleAnim();
+            }
             //setLocation(getX(), potInstance.getY() + yAdjust[growthStage]); // move image according to yAdjust
         }
         setImage(plantImages[p.growthStage]);
@@ -145,8 +153,4 @@ public class Plant extends Actor
         }
     }
     */
-   
-    
-    
-    
 }

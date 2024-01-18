@@ -35,4 +35,6 @@ public class PlantData implements Serializable
     public boolean isThirsty() {
        return thirst >= 15;
    }
+   
+   
 }

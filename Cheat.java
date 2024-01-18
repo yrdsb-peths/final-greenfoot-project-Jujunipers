@@ -23,7 +23,7 @@ public class Cheat extends Actor
             }
         }
        
-        // Change
+        // Press A to add 'move time forward'
         if(Greenfoot.isKeyDown("A")) {
             for(int i = 0; i < PlayerDataManager.getPlayerData().plantData.length; i++) {
                 if(PlayerDataManager.getPlayerData().plantData[i] == null) {

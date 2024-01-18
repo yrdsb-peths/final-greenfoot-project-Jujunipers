@@ -48,6 +48,9 @@ public class Pot extends Actor
         int waterIconX = plantX + 30;
         int waterIconY = plantY + 20;
         MyWorld.instance.addObject(plant.waterIcon, waterIconX, waterIconY);
+        
+        // Create plant's sparkle animation
+        MyWorld.instance.addObject(plant.sparkles, plantX, plantY);
     }
     
     // creates new plant data
