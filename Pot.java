@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.time.Instant;
 
 /**
  * Pot that contains each plant.
@@ -13,7 +14,7 @@ public class Pot extends Actor
     
     // Create plant and waterIcon variables. plants and waterIcons now belong to each pot instance
     public Plant plant;
-    public WaterIcon waterIcon;
+    
     
     
     private GreenfootImage potImage;
@@ -25,8 +26,6 @@ public class Pot extends Actor
         potImage = new GreenfootImage("images/pot.png");
         potImage.scale((int) (MyWorld.instance.scale * (double) potImage.getWidth()), (int) ((double) MyWorld.instance.scale * potImage.getHeight()));
         setImage(potImage);
-        
-        
     }
     
     public void act()
@@ -46,26 +45,36 @@ public class Pot extends Actor
         MyWorld.instance.addObject(plant, plantX, plantY);
         
         // Create plant's waterIcon
-        waterIcon = new WaterIcon();
         int waterIconX = plantX + 30;
         int waterIconY = plantY + 20;
-        MyWorld.instance.addObject(waterIcon, waterIconX, waterIconY);
+        MyWorld.instance.addObject(plant.waterIcon, waterIconX, waterIconY);
+        
+        
     }
     
     // creates new plant data
     public void plantSeed(String species) {
         PlayerDataManager.getPlayerData().plantData[index] = new PlantData(); // makes it not null (creates the object lol)
         PlayerDataManager.getPlayerData().plantData[index].species = species;
+        
+        // Get the current epoch time in seconds
+        long epochSeconds = Instant.now().getEpochSecond();
+        
+        // lastWateredTime is now!
+        PlayerDataManager.getPlayerData().plantData[index].lastWateredTime = epochSeconds;
+        
         createPlant();
+        
+        // Play plantSFX
+        MyWorld.audioManager.plantSFX.play();
     }
     
     public void tryLoadPlant() {
         // Create a plant from save file
         if(PlayerDataManager.getPlayerData().plantData[index] != null) { // null means there's no plant in that pot
             createPlant();
-            System.out.println("!null");
         } else {
-            System.out.println("null");
+            
         }
     }
 }

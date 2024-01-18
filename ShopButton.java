@@ -10,16 +10,21 @@ public class ShopButton extends Actor
 {
     public int price;
     public String item;
+    public boolean isDisabled = false;
     
     public Label priceLabel;
     
     GreenfootImage shopButtonImage;
+    GreenfootImage shopButtonImageDark; // icon for when button is disabled
     
     public ShopButton(String item) {
         this.item = item;
         shopButtonImage = new GreenfootImage("images/shop/shop_item_" + item + ".png");
         shopButtonImage.scale((int) (MyWorld.instance.scale * (double) shopButtonImage.getWidth()), (int) ((double) MyWorld.instance.scale * shopButtonImage.getHeight()));
         setImage(shopButtonImage);
+        
+        shopButtonImageDark = new GreenfootImage("images/shop/shop_item_" + item + "_dark.png");
+        shopButtonImageDark.scale((int) (MyWorld.instance.scale * (double) shopButtonImageDark.getWidth()), (int) ((double) MyWorld.instance.scale * shopButtonImageDark.getHeight()));
         
         // Set price
         if(item.equals("seeds")) {
@@ -46,7 +51,7 @@ public class ShopButton extends Actor
             if(EconomyManager.hasEnoughMoney(this.price) && Greenfoot.mouseClicked(this)) {
                 // Decrease currency
                 EconomyManager.addMoney(-price);
-                System.out.println("bought!");
+                MyWorld.audioManager.boughtSFX.play();
                 
                 // Increase item amount in inventory
                 if(item.equals("seeds")) {
@@ -55,15 +60,27 @@ public class ShopButton extends Actor
                 }
             }
         }
+        
+        // Set icon image to regular (enabled) or dark (disabled) depending on whether or not player has enough money to buy
+        if(!isDisabled && !EconomyManager.hasEnoughMoney(this.price)) {
+            setImage(shopButtonImageDark);
+            isDisabled = true;
+        }
+        if(isDisabled && EconomyManager.hasEnoughMoney(this.price)) {
+            setImage(shopButtonImage);
+            isDisabled = false;
+        }
     }
     
     public void show() {
         shopButtonImage.setTransparency(255);
+        shopButtonImageDark.setTransparency(255);
         priceLabel.setFillColor(new Color(236, 206, 159, 255));
     }
     
     public void hide() {
         shopButtonImage.setTransparency(0);
+        shopButtonImageDark.setTransparency(0);
         priceLabel.setFillColor(new Color(236, 206, 159, 0));
     }
 }

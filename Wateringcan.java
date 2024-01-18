@@ -56,8 +56,8 @@ public class WateringCan extends SmoothMover
     public boolean tryToWaterSucceeds() {
         if(isTouching(Pot.class)) {
             Pot potInstance = (Pot) getOneIntersectingObject(Pot.class); // gets the specific pot instance that the mouse is touching
-            if(PlayerDataManager.getPlayerData().plantData != null) { // if the plant in that pot exists, try to water it
-                if(PlayerDataManager.getPlayerData().plantData[potInstance.index].thirsty) { // if the plant is thirsty, water it and return true for success in watering plant
+            if(PlayerDataManager.getPlayerData().plantData[potInstance.index] != null) { // if the plant in that pot exists, try to water it
+                if(PlayerDataManager.getPlayerData().plantData[potInstance.index].isThirsty()) { // if the plant is thirsty, water it and return true for success in watering plant
                     potInstance.plant.waterPlant();
                     return true;
                 }
@@ -66,7 +66,7 @@ public class WateringCan extends SmoothMover
             return false;
         } else if(isTouching(Plant.class)) {
             Plant plantInstance = (Plant) getOneIntersectingObject(Plant.class);
-            if(PlayerDataManager.getPlayerData().plantData[plantInstance.potInstance.index].thirsty) { // if plant is thirsty, try to water it
+            if(PlayerDataManager.getPlayerData().plantData[plantInstance.potInstance.index].isThirsty()) { // if plant is thirsty, try to water it
                 plantInstance.waterPlant();
                 return true;
             }

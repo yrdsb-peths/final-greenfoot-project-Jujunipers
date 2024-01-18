@@ -12,6 +12,7 @@ public class MyWorld extends World
     public static ToolManager toolManager;
     public static UIManager uiManager;
     public static EconomyManager economyManager;
+    public static AudioManager audioManager;
     
     
     
@@ -50,13 +51,11 @@ public class MyWorld extends World
         bgImage.scale(1200, 675);
         this.setBackground(bgImage);
         
+        economyManager = new EconomyManager();
+        toolManager = new ToolManager();
+        uiManager = new UIManager();
+        audioManager = new AudioManager();
         
-        EconomyManager economyManager = new EconomyManager();
-        // Create toolManager, which manages all tools
-        ToolManager toolManager = new ToolManager();
-        
-        // Create uIManager, which manages all UI elements (like buttons)
-        UIManager uiManager = new UIManager();
         
         Cheat cheat = new Cheat();
         addObject(cheat, 0, 0);
@@ -70,9 +69,10 @@ public class MyWorld extends World
         
         
         // Set order of object images
-        setPaintOrder(Label.class, ShopButton.class, ShopMenu.class, Shop.class, Seed.class, WateringCan.class, WaterIcon.class, Pot.class, Plant.class);
+        setPaintOrder(Sparkles.class, Label.class, ShopButton.class, ShopMenu.class, Shop.class, Seed.class, WateringCan.class, WaterIcon.class, Pot.class, Plant.class);
         
-        System.out.println("myworldhaahha");
+        // Play bgm
+        audioManager.bgm.playLoop();
     }
     
     public void stopped() {
