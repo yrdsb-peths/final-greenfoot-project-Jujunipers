@@ -146,6 +146,7 @@ public class Plant extends Actor
     }
     
     public void sellPlant() {
+        MyWorld.instance.removeObject(sellInstructions);
         MyWorld.instance.removeObject(this);
         MyWorld.instance.removeObject(waterIcon);
         potInstance.hasPlant = false;

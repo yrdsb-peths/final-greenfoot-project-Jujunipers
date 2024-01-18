@@ -17,12 +17,6 @@ public class Cheat extends Actor
     {
         MouseInfo mouseInfo = Greenfoot.getMouseInfo();
         
-        if(mouseInfo != null) {
-            if(Greenfoot.isKeyDown("C") && mouseInfo.getButton() == 3) {
-                EconomyManager.addMoney(500);
-            }
-        }
-       
         // Press A to add 'move time forward'
         if(Greenfoot.isKeyDown("A")) {
             for(int i = 0; i < PlayerDataManager.getPlayerData().plantData.length; i++) {

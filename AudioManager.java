@@ -13,6 +13,8 @@ public class AudioManager extends Actor
     public static GreenfootSound plantSFX;
     public static GreenfootSound wateringSFX;
     
+    public static GreenfootSound bgm;
+    
     public AudioManager() {
         boughtSFX = new GreenfootSound("bought.wav");
         boughtSFX.setVolume(80);
@@ -21,10 +23,12 @@ public class AudioManager extends Actor
         plantSFX = new GreenfootSound("planting.wav");
         plantSFX.setVolume(80);
         wateringSFX = new GreenfootSound("watering.wav");
+        bgm = new GreenfootSound("bgm.mp3");
+        bgm.setVolume(60);
     }
     
     public void act()
     {
-        // Add your action code here.
+        
     }
 }

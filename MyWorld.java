@@ -70,6 +70,9 @@ public class MyWorld extends World
         
         // Set order of object images
         setPaintOrder(Sparkles.class, Label.class, ShopButton.class, ShopMenu.class, Shop.class, Seed.class, WateringCan.class, WaterIcon.class, Pot.class, Plant.class);
+        
+        // Play bgm
+        audioManager.bgm.playLoop();
     }
     
     public void stopped() {
