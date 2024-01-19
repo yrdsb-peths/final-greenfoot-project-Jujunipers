@@ -32,8 +32,13 @@ public class PlantData implements Serializable
         
     }
     
+    /**
+     * Checks whether or not plant is thirsty
+     * 
+     * @return  whether or not plant is thirsty
+     */
     public boolean isThirsty() {
-       return thirst >= 15;
+       return thirst >= 15; // considered thirsty if thirst over 15
        }
    
 

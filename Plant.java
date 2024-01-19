@@ -119,6 +119,9 @@ public class Plant extends Actor
         }
     }
     
+    /**
+     * Water the plant
+     */
     public void waterPlant() {
         // Play wateringSFX
         MyWorld.audioManager.wateringSFX.play();
@@ -135,6 +138,9 @@ public class Plant extends Actor
         p.lastWateredTime = epochSeconds;
     }
     
+    /**
+     * Sell plant
+     */
     public void sellPlant() {
         MyWorld.instance.removeObject(sellInstructions);
         MyWorld.instance.removeObject(this);
@@ -145,6 +151,9 @@ public class Plant extends Actor
         MyWorld.audioManager.soldSFX.play();
     }
     
+    /**
+     * Display instructions to sell ("Right-click to sell") upon hovering over plant
+     */
     public void displaySellInstructionsOnHover() {
         if(mouseIsHoveringOverPlant()) {
             sellInstructions.setFillColor(Color.WHITE);

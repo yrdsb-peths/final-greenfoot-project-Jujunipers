@@ -33,6 +33,9 @@ public class Sparkles extends Actor
         playSparkleAnim();
     }
     
+    /**
+     * Play sparkling animation
+     */
     public void playSparkleAnim() {
         if(animationTimer.millisElapsed() < 150)
         {
@@ -48,10 +51,13 @@ public class Sparkles extends Actor
             setImage(sparkles[imageIndex]);
             imageIndex++;
         } else {
-            hide();
+            hide(); // remove sparkles object at the end of animation
         }
     }
     
+    /**
+     * Remove sparkles object
+     */
     public void hide() {
         MyWorld.instance.removeObject(this);
     }

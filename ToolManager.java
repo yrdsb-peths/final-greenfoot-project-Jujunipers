@@ -18,9 +18,9 @@ public class ToolManager
         MyWorld.instance.addObject(wateringCan, wateringCan.ogX, wateringCan.ogY);
         
         // Create seedbag, in menu
-        seed = new Seed(true, "test"); // isOgicon = true, icon cannot be dragged, counts numSeeds
+        seed = new Seed(true, "default"); // isOgicon = true, icon cannot be dragged, counts numSeeds
         MyWorld.instance.addObject(seed, seed.ogX, seed.ogY);
-        seed = new Seed(false, "test"); // isOgIcon = false, draggable icon, doesn't count numSeeds
+        seed = new Seed(false, "default"); // isOgIcon = false, draggable icon, doesn't count numSeeds
         MyWorld.instance.addObject(seed, seed.ogX, seed.ogY);
     }
 }

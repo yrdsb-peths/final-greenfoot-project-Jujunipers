@@ -33,7 +33,9 @@ public class Pot extends Actor
         
     }
     
-    // creates a new plant from PlantData
+    /**
+     * Creates the plant in the pot
+     */
     public void createPlant() {
         hasPlant = true;
         
@@ -52,7 +54,11 @@ public class Pot extends Actor
         
     }
     
-    // creates new plant data
+    /**
+     * Creates a new plant in the pot
+     * 
+     * @param species  plant species
+     */
     public void plantSeed(String species) {
         PlayerDataManager.getPlayerData().plantData[index] = new PlantData(); // makes it not null (creates the object lol)
         PlayerDataManager.getPlayerData().plantData[index].species = species;
@@ -60,7 +66,7 @@ public class Pot extends Actor
         // Get the current epoch time in seconds
         long epochSeconds = Instant.now().getEpochSecond();
         
-        // lastWateredTime is now!
+        // Set lastWateredTime to now!
         PlayerDataManager.getPlayerData().plantData[index].lastWateredTime = epochSeconds;
         
         createPlant();
@@ -69,12 +75,13 @@ public class Pot extends Actor
         MyWorld.audioManager.plantSFX.play();
     }
     
+    /**
+     * Try to load plant from save file. If plant existed in the pot in the save file, add plant to pot.
+     */
     public void tryLoadPlant() {
         // Create a plant from save file
-        if(PlayerDataManager.getPlayerData().plantData[index] != null) { // null means there's no plant in that pot
+        if(PlayerDataManager.getPlayerData().plantData[index] != null) { // null means there's no plant in that pot -> if that plant should exist, create plant from save file
             createPlant();
-        } else {
-            
         }
     }
 }

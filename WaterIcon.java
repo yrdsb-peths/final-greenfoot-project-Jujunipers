@@ -28,16 +28,27 @@ public class WaterIcon extends Actor
         
     }
     
+    /**
+     * Set scale of waterIcon
+     * 
+     * @param thirstPercent  percent representing plant's thirst
+     */
     public void setScale(double thirstPercent) {
         waterIcon = new GreenfootImage("images/water_droplet.png");
         waterIcon.scale(minX + (int)(thirstPercent*maxX), minY + (int)(thirstPercent*maxY));
         setImage(waterIcon);
     }
     
+    /**
+     * Show waterIcon
+     */
     public void show() {
         waterIcon.setTransparency(255);
     }
     
+    /**
+     * Hide waterIcon
+     */
     public void hide() {
         waterIcon.setTransparency(0);
     }

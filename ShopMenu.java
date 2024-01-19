@@ -31,11 +31,17 @@ public class ShopMenu extends Actor
         
     }
     
+    /**
+     * Show shopMenu
+     */
     public void show() {
         shopImage.setTransparency(255);
         shopButton1.show();
     }
     
+    /**
+     * Hide shopMenu
+     */
     public void hide() {
         shopImage.setTransparency(0);
         shopButton1.hide();
