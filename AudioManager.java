@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Creates all audio files
+ * Creates all audio files and sets their volumes
  * 
  * @author Julia
  * @version January 2024

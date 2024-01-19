@@ -23,6 +23,9 @@ public class PlayerDataManager
         
     }
     
+    /**
+     * @return  playerData
+     */
     public static PlayerData getPlayerData() {
         if(playerData == null) {
             loadData();
@@ -30,6 +33,9 @@ public class PlayerDataManager
         return playerData;
     }
     
+    /**
+     * Save playerData to file
+     */
     public static void saveData() {
         try {
             FileOutputStream f = new FileOutputStream(new File(SAVE_FILE_NAME));
@@ -45,6 +51,9 @@ public class PlayerDataManager
         }
     }
     
+    /**
+     * Load playerData from file, creates new playerData if it doesn't exist yet (if it's first time game is opened)
+     */
     public static void loadData() {
         try {
             FileInputStream fi = new FileInputStream(new File(SAVE_FILE_NAME));

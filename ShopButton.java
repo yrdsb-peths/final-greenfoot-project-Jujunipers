@@ -72,12 +72,18 @@ public class ShopButton extends Actor
         }
     }
     
+    /**
+     * Show shopButton
+     */
     public void show() {
         shopButtonImage.setTransparency(255);
         shopButtonImageDark.setTransparency(255);
         priceLabel.setFillColor(new Color(236, 206, 159, 255));
     }
     
+    /**
+     * Hide shopButton
+     */
     public void hide() {
         shopButtonImage.setTransparency(0);
         shopButtonImageDark.setTransparency(0);

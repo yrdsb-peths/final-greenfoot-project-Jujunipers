@@ -48,10 +48,10 @@ public class WateringCan extends Actor
         
     }
     
-    /*
+    /**
      * Tries to water plant that wateringCan is hovering over. If plant is thirsty, then water. Otherwise, don't water.
      * 
-     * @return boolean whether or not plant is watered
+     * @return  whether or not plant is watered
      */
     public boolean tryToWaterSucceeds() {
         if(isTouching(Pot.class)) {

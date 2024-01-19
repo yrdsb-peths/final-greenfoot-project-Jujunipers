@@ -75,6 +75,9 @@ public class MyWorld extends World
         audioManager.bgm.playLoop();
     }
     
+    /**
+     * When greenfoot stops the scenario, save player's data
+     */
     public void stopped() {
         PlayerDataManager.saveData();
     }
