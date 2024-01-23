@@ -46,7 +46,7 @@ public class Plant extends Actor
         sparkles = new Sparkles(this);
         
         p = PlayerDataManager.getPlayerData().plantData[potInstance.index];
-        System.out.println(p.species);
+        
         // Load plant growth images depending on plant species
         if(p.species.equals("default")) {
             for(int i = 0; i < 5; i++) {
