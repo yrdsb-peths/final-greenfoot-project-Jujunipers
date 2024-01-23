@@ -26,7 +26,7 @@ public class Seed extends Actor
         this.species = species;
         
         // Create seed image
-        if(species.equals("test")) {
+        if(species.equals("default")) {
             seedImage = new GreenfootImage("images/seeds.png");
             seedImage.scale((int) (MyWorld.instance.scale * (double) seedImage.getWidth()), (int) ((double) MyWorld.instance.scale * seedImage.getHeight()));
             // original menu location for icon
